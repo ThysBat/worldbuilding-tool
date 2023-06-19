@@ -1,11 +1,11 @@
 import Heading from "../components/Heading";
-import SubHeading from "../components/SubHeading";
+import ProjectCard from "../components/ProjectCard";
 
 export default function Home() {
   return (
     <main>
-      <Heading>🐬 Capstone Template 🐬</Heading>
-      <SubHeading>We dolphinitely love coding!</SubHeading>
+      <Heading>Projects</Heading>
+      <ProjectCard />
     </main>
   );
 }
