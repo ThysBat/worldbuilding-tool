@@ -16,11 +16,11 @@ export default function App({ Component, pageProps }) {
 const projectsMockData = [
   {
     id: 1,
-    name: "Aventurien",
+    name: "Over the Skies",
   },
   {
     id: 2,
-    name: "Middle Earth",
+    name: "Aventurien",
   },
   {
     id: 3,
@@ -28,6 +28,6 @@ const projectsMockData = [
   },
   {
     id: 4,
-    name: "Over the Skies",
+    name: "Middle Earth",
   },
 ];

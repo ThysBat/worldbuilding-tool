@@ -13,9 +13,14 @@ const StyledList = styled.ul`
 `;
 
 export default function ProjectsList({ data }) {
+  const sortedProjects = data.sort((a, b) => {
+    if (a.name > b.name) return 1;
+    if (a.name < b.name) return -1;
+  });
+
   return (
     <StyledList>
-      {data.map((project) => {
+      {sortedProjects.map((project) => {
         return (
           <li key={project.id}>
             <ProjectCard>{project.name}</ProjectCard>
