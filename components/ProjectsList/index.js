@@ -7,6 +7,7 @@ const StyledList = styled.ul`
 
   flex-direction: row;
   flex-wrap: wrap;
+  padding-left: 1rem;
 
   text-align: center;
   list-style: none;
