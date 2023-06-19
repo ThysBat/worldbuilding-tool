@@ -1,11 +1,11 @@
 import Heading from "../components/Heading";
-import SubHeading from "../components/SubHeading";
+import ProjectsList from "../components/ProjectsList";
 
-export default function Home() {
+export default function Home({ projectsData }) {
   return (
     <main>
-      <Heading>🐬 Capstone Template 🐬</Heading>
-      <SubHeading>We dolphinitely love coding!</SubHeading>
+      <Heading>Projects</Heading>
+      <ProjectsList data={projectsData} />
     </main>
   );
 }
