@@ -1,11 +1,11 @@
 import Heading from "../components/Heading";
-import ProjectCard from "../components/ProjectCard";
+import ProjectsList from "../components/ProjectsList";
 
-export default function Home() {
+export default function Home({ projectsData }) {
   return (
     <main>
       <Heading>Projects</Heading>
-      <ProjectCard />
+      <ProjectsList data={projectsData} />
     </main>
   );
 }
