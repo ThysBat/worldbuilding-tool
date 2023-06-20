@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
+import styled from "styled-components";
 import Heading from "../../components/Heading";
 import { StyledButton } from "../../components/Button";
-import styled from "styled-components";
 
 export default function ProjectPage({ projectsMockData }) {
   const router = useRouter();
@@ -10,6 +10,8 @@ export default function ProjectPage({ projectsMockData }) {
   if (!slug) return <p>Loading...</p>;
 
   const project = projectsMockData.find((project) => project.slug === slug);
+
+  if (!project) return <div>No Data Found</div>;
 
   return (
     <>

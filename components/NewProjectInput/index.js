@@ -4,7 +4,6 @@ import { useState } from "react";
 
 export default function Input({ width, onCancel, onSave }) {
   const [newProjectInput, setNewProjectInput] = useState("");
-  console.log(newProjectInput);
 
   return (
     <Card width={width}>

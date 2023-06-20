@@ -2,10 +2,16 @@ import GlobalStyle from "../styles";
 import Head from "next/head";
 import slugify from "slugify";
 import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {
-  const [projectsMockData, setProjectsMockData] = useState(projectsList);
+  const [projectsMockData, setProjectsMockData] = useLocalStorageState(
+    "projects",
+    {
+      defaultValue: projectsList,
+    }
+  );
   const router = useRouter();
 
   function handleAddProject(projectName) {
@@ -23,6 +29,8 @@ export default function App({ Component, pageProps }) {
 
     router.push(`/project/${slug}`);
   }
+
+  console.log(projectsMockData);
 
   return (
     <>
