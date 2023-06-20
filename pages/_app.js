@@ -29,8 +29,6 @@ export default function App({ Component, pageProps }) {
     router.push(`/project/${slug}`);
   }
 
-  console.log(projectsMockData);
-
   return (
     <>
       <GlobalStyle />
