@@ -1,7 +1,6 @@
 import GlobalStyle from "../styles";
 import Head from "next/head";
 import slugify from "slugify";
-import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
 
