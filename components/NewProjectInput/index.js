@@ -1,22 +1,26 @@
 import styled from "styled-components";
 import Card from "../Card";
+import { useState } from "react";
 
-export default function Input({ width, onCancel }) {
+export default function Input({ width, onCancel, onSave }) {
+  const [newProjectInput, setNewProjectInput] = useState("");
+  console.log(newProjectInput);
+
   return (
     <Card width={width}>
       <StyledButton type="button" onClick={onCancel}>
         <span role="img">❌</span>
       </StyledButton>
-      <StyledInput></StyledInput>
-      <StyledButton type="button">
+      <StyledInput
+        name="newProjectInput"
+        value={newProjectInput}
+        onChange={(event) => setNewProjectInput(event.target.value)}
+      ></StyledInput>
+      <StyledButton type="button" onClick={() => onSave(newProjectInput)}>
         <span role="img">✔️</span>
       </StyledButton>
     </Card>
   );
-}
-
-function handleCancel(event) {
-  console.log(event.target);
 }
 
 const StyledInput = styled.input`

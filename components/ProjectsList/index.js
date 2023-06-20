@@ -2,11 +2,12 @@ import { useState } from "react";
 import styled from "styled-components";
 import ProjectCard from "../ProjectCard";
 import Card from "../Card";
-import NewFolderInput from "../NewFolderInput";
+import NewProjectInput from "../NewProjectInput";
+import { useRouter } from "next/router";
 
-export default function ProjectsList({ data }) {
+export default function ProjectsList({ data, handleSave }) {
+  const router = useRouter();
   const [inputState, setInputState] = useState(false);
-  //   const [width, setWidth] = useState("100%");
   const [width, setWidth] = useState("6.5rem");
 
   const sortedProjects = data.sort((a, b) => {
@@ -29,7 +30,11 @@ export default function ProjectsList({ data }) {
         }}
       >
         {inputState ? (
-          <NewFolderInput width={width} onCancel={toggleNewProjectInput} />
+          <NewProjectInput
+            width={width}
+            onCancel={toggleNewProjectInput}
+            onSave={handleSave}
+          />
         ) : (
           <AddProjectButton type="button" onClick={toggleNewProjectInput}>
             <Card>{"➕"}</Card>
