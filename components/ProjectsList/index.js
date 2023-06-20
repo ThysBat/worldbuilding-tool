@@ -3,12 +3,10 @@ import styled from "styled-components";
 import ProjectCard from "../ProjectCard";
 import Card from "../Card";
 import NewProjectInput from "../NewProjectInput";
-import { useRouter } from "next/router";
 
 export default function ProjectsList({ data, handleSave }) {
-  const router = useRouter();
   const [inputState, setInputState] = useState(false);
-  const [width, setWidth] = useState("6.5rem");
+  const [inputWidth, setInputWidth] = useState("6.5rem");
 
   const sortedProjects = data.sort((a, b) => {
     if (a.name > b.name) return 1;
@@ -17,21 +15,21 @@ export default function ProjectsList({ data, handleSave }) {
 
   function toggleNewProjectInput() {
     setInputState(!inputState);
-    setWidth(!inputState ? "100%" : "6.5rem");
+    setInputWidth(!inputState ? "100%" : "6.5rem");
   }
 
   return (
     <StyledList>
       <li
         style={{
-          width: width,
+          width: inputWidth,
           transition: "width 0.6s ease-out",
-          marginRight: width === "100%" ? "1rem" : 0,
+          marginRight: inputWidth === "100%" ? "1rem" : 0,
         }}
       >
         {inputState ? (
           <NewProjectInput
-            width={width}
+            width={inputWidth}
             onCancel={toggleNewProjectInput}
             onSave={handleSave}
           />
@@ -45,7 +43,9 @@ export default function ProjectsList({ data, handleSave }) {
       {sortedProjects.map((project) => {
         return (
           <li key={project.id}>
-            <ProjectCard>{project.name}</ProjectCard>
+            <ProjectCard href={`project/${project.slug}`}>
+              {project.name}
+            </ProjectCard>
           </li>
         );
       })}

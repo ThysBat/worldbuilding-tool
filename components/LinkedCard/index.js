@@ -1,10 +1,10 @@
 import Card from "../Card";
 import Link from "next/link";
 
-export default function LinkedCard({ children }) {
+export default function LinkedCard({ children, href = "/" }) {
   return (
-    <Link href="/">
-      <Card href="/">{children}</Card>
+    <Link href={href}>
+      <Card>{children}</Card>
     </Link>
   );
 }

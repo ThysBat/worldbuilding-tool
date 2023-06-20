@@ -3,14 +3,13 @@ import Heading from "../../components/Heading";
 import { StyledButton } from "../../components/Button";
 import styled from "styled-components";
 
-export default function ProjectPage() {
+export default function ProjectPage({ projectsMockData }) {
   const router = useRouter();
   const { slug } = router.query;
 
   if (!slug) return <p>Loading...</p>;
 
-  // later on the project name will be saved seperately
-  const projectName = slug.charAt(0).toUpperCase() + slug.slice(1);
+  const project = projectsMockData.find((project) => project.slug === slug);
 
   return (
     <>
@@ -19,7 +18,7 @@ export default function ProjectPage() {
           {/* use a svg for the back button when it comes to styling */}
           <Button onClick={() => router.back()}>{"<"}</Button>
         </ButtonContainer>
-        <Heading>{projectName}</Heading>
+        <Heading>{project.name}</Heading>
         <Placeholder></Placeholder>
       </Header>
       <hr />
