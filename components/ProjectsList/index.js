@@ -8,7 +8,7 @@ export default function ProjectsList({ data, handleSave }) {
   const [inputState, setInputState] = useState(false);
   const [inputWidth, setInputWidth] = useState("6.5rem");
 
-  const sortedProjects = data.sort((a, b) => {
+  const sortedProjects = data.slice().sort((a, b) => {
     if (a.name > b.name) return 1;
     if (a.name < b.name) return -1;
   });
