@@ -1,5 +1,5 @@
-import Card from "../Card";
+import LinkedCard from "../LinkedCard";
 
-export default function ProjectCard({ children }) {
-  return <Card>{children}</Card>;
+export default function ProjectCard({ children, href }) {
+  return <LinkedCard href={href}>{children}</LinkedCard>;
 }
