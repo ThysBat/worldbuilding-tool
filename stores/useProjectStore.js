@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 import slugify from "slugify";
+import { uid } from "uid";
 
 const projectsList = [
   {
@@ -30,29 +31,24 @@ const projectsList = [
   },
 ];
 
-function handleAddProject(projectName, projects) {
-  const nextId = projects.length + 1;
+function createNewProject(projectName) {
   const slug = slugify(projectName, { lower: true });
 
-  return [
-    ...projects,
-    {
-      id: nextId,
-      name: projectName,
-      slug: slug,
-      pathPrefix: "project/",
-    },
-  ];
-
-  // router.push(`/project/${slug}`);
+  return {
+    id: uid(),
+    name: projectName,
+    slug: slug,
+    pathPrefix: "project/",
+  };
 }
 
 export const useProjectStore = create(
   persist(
     (set, get) => ({
       projects: projectsList,
-      addProject: (projectName) =>
-        set({ projects: handleAddProject(projectName, get().projects) }),
+      addProject: (newProject) =>
+        set({ projects: [...get().projects, newProject] }),
+      createNewProject,
     }),
     {
       name: "projects",

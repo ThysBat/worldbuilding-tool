@@ -1,21 +1,24 @@
 import { useState } from "react";
 import useStore from "../../hook/useStore";
 import { useProjectStore } from "../../stores/useProjectStore";
-
+import { useRouter } from "next/router";
 import styled from "styled-components";
+
 import Card from "../Card";
 import Button from "../Button";
 
 export default function Input({ width, onCancel, onSave }) {
   const [newProjectInput, setNewProjectInput] = useState("");
+  const router = useRouter();
 
   const projectStore = useStore(useProjectStore, (state) => state);
   if (!projectStore) return <div>Loading...</div>;
-  const { addProject, projects } = projectStore;
+  const { createNewProject, addProject } = projectStore;
 
   function onClickSave() {
-    addProject(newProjectInput);
-    // router.push(`/project/${slug}`);
+    const newProject = createNewProject(newProjectInput);
+    addProject(newProject);
+    router.push(`/project/${newProject.slug}`);
   }
 
   return (
