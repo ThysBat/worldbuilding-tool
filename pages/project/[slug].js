@@ -4,7 +4,7 @@ import { useProjectStore } from "../../stores/useProjectStore";
 
 import styled from "styled-components";
 import Heading from "../../components/Heading";
-import { StyledButton } from "../../components/Button";
+import StyledButton from "../../components/Button";
 import CategoriesList from "../../components/CategoriesList";
 
 export default function ProjectPage({ categoriesMockData }) {

@@ -18,13 +18,7 @@ export default function AddButtonList({ listItems, handleSave }) {
 
   return (
     <List listItems={listItems}>
-      <li
-        style={{
-          width: inputWidth,
-          transition: "width 0.6s ease-out",
-          marginRight: inputWidth === "100%" ? "1rem" : 0,
-        }}
-      >
+      <FirstListItem inputWidth={inputWidth}>
         {inputState ? (
           <NewProjectInput
             width={inputWidth}
@@ -36,9 +30,13 @@ export default function AddButtonList({ listItems, handleSave }) {
             <Card>{"➕"}</Card>
           </Button>
         )}
-      </li>
+      </FirstListItem>
     </List>
   );
 }
 
-const StyledList = styled.li``;
+const FirstListItem = styled.li`
+  width: ${({ inputWidth }) => inputWidth};
+  transition: width 0.6s ease-out;
+  margin-right: ${({ inputWidth }) => (inputWidth === "100%" ? "1rem" : 0)};
+`;
