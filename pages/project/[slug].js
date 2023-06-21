@@ -2,8 +2,9 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import Heading from "../../components/Heading";
 import { StyledButton } from "../../components/Button";
+import CategoriesList from "../../components/CategoriesList";
 
-export default function ProjectPage({ projectsMockData }) {
+export default function ProjectPage({ projectsMockData, categoriesMockData }) {
   const router = useRouter();
   const { slug } = router.query;
 
@@ -24,6 +25,7 @@ export default function ProjectPage({ projectsMockData }) {
         <Placeholder></Placeholder>
       </Header>
       <hr />
+      <CategoriesList data={categoriesMockData}></CategoriesList>
     </>
   );
 }

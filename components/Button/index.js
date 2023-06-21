@@ -6,5 +6,9 @@ export default function Button({ children }) {
 
 export const StyledButton = styled.button`
   border: none;
-  background-color: unset;
+  background-color: transparent;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
