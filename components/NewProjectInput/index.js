@@ -5,6 +5,11 @@ import { useState } from "react";
 export default function Input({ width, onCancel, onSave }) {
   const [newProjectInput, setNewProjectInput] = useState("");
 
+  function onClickSave() {
+    if (!newProjectInput) return;
+    onSave(newProjectInput);
+  }
+
   return (
     <Card width={width}>
       <StyledButton type="button" onClick={onCancel}>
@@ -15,7 +20,7 @@ export default function Input({ width, onCancel, onSave }) {
         value={newProjectInput}
         onChange={(event) => setNewProjectInput(event.target.value)}
       ></StyledInput>
-      <StyledButton type="button" onClick={() => onSave(newProjectInput)}>
+      <StyledButton type="button" onClick={onClickSave}>
         <span role="img">✔️</span>
       </StyledButton>
     </Card>

@@ -5,13 +5,13 @@ import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
   const [projectsMockData, setProjectsMockData] = useLocalStorageState(
     "projects",
     {
       defaultValue: projectsList,
     }
   );
-  const router = useRouter();
 
   function handleAddProject(projectName) {
     const nextId = projectsMockData.length + 1;
