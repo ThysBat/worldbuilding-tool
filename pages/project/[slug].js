@@ -1,16 +1,25 @@
 import { useRouter } from "next/router";
+import useStore from "../../hook/useStore";
+import { useProjectStore } from "../../stores/useProjectStore";
+
 import styled from "styled-components";
 import Heading from "../../components/Heading";
 import { StyledButton } from "../../components/Button";
 import CategoriesList from "../../components/CategoriesList";
 
-export default function ProjectPage({ projectsMockData, categoriesMockData }) {
+export default function ProjectPage({ categoriesMockData }) {
   const router = useRouter();
   const { slug } = router.query;
 
+  const projects = useStore(useProjectStore, (state) => state.projects);
+
+  if (!projects) return <div>Loading...</div>;
   if (!slug) return <p>Loading...</p>;
 
-  const project = projectsMockData.find((project) => project.slug === slug);
+  console.log(slug);
+  console.log(projects);
+
+  const project = projects.find((project) => project.slug === slug);
 
   if (!project) return <div>No Data Found</div>;
 

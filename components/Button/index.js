@@ -1,10 +1,7 @@
 import styled from "styled-components";
 
-export default function Button({ children }) {
-  return <StyledButton>{children}</StyledButton>;
-}
-
-export const StyledButton = styled.button`
+// just export this as default
+const Button = styled.button`
   border: none;
   background-color: transparent;
 
@@ -12,3 +9,5 @@ export const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
 `;
+
+export default Button;

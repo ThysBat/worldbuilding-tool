@@ -2,11 +2,12 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import List from "../List";
+
 import Card from "../Card";
 import NewProjectInput from "../NewProjectInput";
-import { StyledButton as AddButton } from "../Button";
+import Button from "../Button";
 
-export default function AddButtonList({ listItems }) {
+export default function AddButtonList({ listItems, handleSave }) {
   const [inputState, setInputState] = useState(false);
   const [inputWidth, setInputWidth] = useState("6.5rem");
 
@@ -31,11 +32,13 @@ export default function AddButtonList({ listItems }) {
             onSave={handleSave}
           />
         ) : (
-          <AddButton type="button" onClick={toggleNewProjectInput}>
+          <Button type="button" onClick={toggleNewProjectInput}>
             <Card>{"➕"}</Card>
-          </AddButton>
+          </Button>
         )}
       </li>
     </List>
   );
 }
+
+const StyledList = styled.li``;
