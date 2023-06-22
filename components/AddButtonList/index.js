@@ -5,9 +5,10 @@ import List from "../List";
 
 import Card from "../Card";
 import NewProjectInput from "../NewProjectInput";
+import Input from "../InputField";
 import Button from "../Button";
 
-export default function AddButtonList({ listItems, handleSave }) {
+export default function AddButtonList({ listItems }) {
   const [inputState, setInputState] = useState(false);
   const [inputWidth, setInputWidth] = useState("6.5rem");
 
@@ -23,7 +24,6 @@ export default function AddButtonList({ listItems, handleSave }) {
           <NewProjectInput
             width={inputWidth}
             onCancel={toggleNewProjectInput}
-            onSave={handleSave}
           />
         ) : (
           <Button type="button" onClick={toggleNewProjectInput}>
@@ -31,6 +31,7 @@ export default function AddButtonList({ listItems, handleSave }) {
           </Button>
         )}
       </FirstListItem>
+      <Input></Input>
     </List>
   );
 }
