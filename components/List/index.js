@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import ProjectCard from "../ProjectCard";
+import LinkedCard from "../LinkedCard";
 
 export default function List({ children, listItems = [] }) {
   const router = useRouter();
@@ -14,9 +14,9 @@ export default function List({ children, listItems = [] }) {
       {listItems.map((project) => {
         return (
           <li key={project.id}>
-            <ProjectCard href={path + project.pathPrefix + project.slug}>
+            <LinkedCard href={path + project.pathPrefix + project.slug}>
               {project.name}
-            </ProjectCard>
+            </LinkedCard>
           </li>
         );
       })}
