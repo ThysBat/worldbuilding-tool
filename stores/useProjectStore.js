@@ -46,9 +46,9 @@ export const useProjectStore = create(
   persist(
     (set, get) => ({
       projects: projectsList,
+      createNewProject,
       addProject: (newProject) =>
         set({ projects: [...get().projects, newProject] }),
-      createNewProject,
     }),
     {
       name: "projects",

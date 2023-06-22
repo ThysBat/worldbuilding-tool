@@ -1,40 +1,45 @@
-import { useState } from "react";
+import useStore from "../../hook/useStore";
+import { useCategoryStore } from "../../stores/useCategoryStore";
+import { useProjectStore } from "../../stores/useProjectStore";
+import { useRouter } from "next/router";
 
-import styled from "styled-components";
 import AddButtonList from "../AddButtonList";
 
-export default function CategoriesList({ data, handleSave }) {
-  const [inputState, setInputState] = useState(false);
-  const [inputWidth, setInputWidth] = useState("6.5rem");
+export default function CategoriesList() {
+  const router = useRouter();
+  const categoryStore = useStore(useCategoryStore, (state) => state);
+  const projectStore = useStore(useProjectStore, (state) => state);
 
-  const sortedCategories = data.slice().sort((a, b) => {
+  if (!router || !categoryStore || !projectStore) return <div>Loading...</div>;
+
+  const {
+    categories,
+    createNewCategory,
+    addCategory,
+    getCategoriesByProjectId,
+  } = categoryStore;
+  const { projects } = projectStore;
+  const { slug } = router.query;
+
+  const project = projects.find((project) => project.slug === slug);
+  const filteredCategories = getCategoriesByProjectId(project.id);
+
+  const sortedCategories = filteredCategories.slice().sort((a, b) => {
     if (a.name > b.name) return 1;
     if (a.name < b.name) return -1;
   });
 
-  function toggleNewProjectInput() {
-    setInputState(!inputState);
-    setInputWidth(!inputState ? "100%" : "6.5rem");
+  function handleSave(categoryName) {
+    if (categoryName.length < 1) return;
+    const newCategory = createNewCategory(categoryName, project.id);
+    console.log(newCategory);
+    addCategory(newCategory);
   }
 
-  return <AddButtonList listItems={sortedCategories}></AddButtonList>;
+  return (
+    <AddButtonList
+      listItems={sortedCategories}
+      handleSave={handleSave}
+    ></AddButtonList>
+  );
 }
-
-const StyledList = styled.ul`
-  display: flex;
-  gap: 1rem;
-
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding-left: 1rem;
-
-  text-align: center;
-  list-style: none;
-`;
-
-const AddProjectButton = styled.button`
-  border: none;
-  background-color: inherit;
-  display: flex;
-  justify-content: center;
-`;

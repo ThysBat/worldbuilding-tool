@@ -11,11 +11,11 @@ export default function List({ children, listItems = [] }) {
   return (
     <StyledList>
       {children}
-      {listItems.map((project) => {
+      {listItems.map((item) => {
         return (
-          <li key={project.id}>
-            <LinkedCard href={path + project.pathPrefix + project.slug}>
-              {project.name}
+          <li key={item.id}>
+            <LinkedCard href={path + item.pathPrefix + item.slug}>
+              {item.name}
             </LinkedCard>
           </li>
         );

@@ -16,9 +16,6 @@ export default function ProjectPage({ categoriesMockData }) {
   if (!projects) return <div>Loading...</div>;
   if (!slug) return <p>Loading...</p>;
 
-  console.log(slug);
-  console.log(projects);
-
   const project = projects.find((project) => project.slug === slug);
 
   if (!project) return <div>No Data Found</div>;
