@@ -1,15 +1,15 @@
 import { useRouter } from "next/router";
-import useStore from "../../hook/useStore";
-import { useProjectStore } from "../../stores/useProjectStore";
+import useStore from "../../../hook/useStore";
+import { useProjectStore } from "../../../stores/useProjectStore";
 
 import styled from "styled-components";
-import Heading from "../../components/Heading";
-import StyledButton from "../../components/Button";
-import CategoriesList from "../../components/CategoriesList";
+import Heading from "../../../components/Heading";
+import StyledButton from "../../../components/Button";
+import CategoriesList from "../../../components/CategoriesList";
 
-export default function ProjectPage({ categoriesMockData }) {
+export default function ProjectPage() {
   const router = useRouter();
-  const { slug } = router.query;
+  const { projectSlug: slug } = router.query;
 
   const projects = useStore(useProjectStore, (state) => state.projects);
 
@@ -31,7 +31,7 @@ export default function ProjectPage({ categoriesMockData }) {
         <Placeholder></Placeholder>
       </Header>
       <hr />
-      <CategoriesList data={categoriesMockData}></CategoriesList>
+      <CategoriesList></CategoriesList>
     </>
   );
 }

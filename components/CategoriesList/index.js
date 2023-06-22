@@ -19,7 +19,7 @@ export default function CategoriesList() {
     getCategoriesByProjectId,
   } = categoryStore;
   const { projects } = projectStore;
-  const { slug } = router.query;
+  const { projectSlug: slug } = router.query;
 
   const project = projects.find((project) => project.slug === slug);
   const filteredCategories = getCategoriesByProjectId(project.id);
