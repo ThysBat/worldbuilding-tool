@@ -40,6 +40,13 @@ const categoriesList = [
     pathPrefix: "/category/",
     projectId: 2,
   },
+  {
+    id: 6,
+    name: "Culture",
+    slug: "culture",
+    pathPrefix: "/category/",
+    projectId: 1,
+  },
 ];
 
 function createNewCategory(categoryName, projectId) {
