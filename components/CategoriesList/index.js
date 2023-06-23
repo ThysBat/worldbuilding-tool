@@ -36,9 +36,11 @@ export default function CategoriesList() {
   }
 
   return (
-    <AddButtonList
-      listItems={sortedCategories}
-      handleSave={handleSave}
-    ></AddButtonList>
+    <>
+      <AddButtonList
+        listItems={sortedCategories}
+        handleSave={handleSave}
+      ></AddButtonList>
+    </>
   );
 }
