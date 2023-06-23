@@ -1,17 +1,23 @@
 import { useRouter } from "next/router";
+import useStore from "../../../../hook/useStore";
+import { useCategoryStore } from "../../../../stores/useCategoryStore";
+
 import styled from "styled-components";
-import Heading from "../../components/Heading";
-import { StyledButton } from "../../components/Button";
+import Heading from "../../../../components/Heading";
+import StyledButton from "../../../../components/Button";
 
-export default function ProjectPage({ projectsMockData }) {
+export default function CategoryPage() {
   const router = useRouter();
-  const { slug } = router.query;
+  const { categorySlug: slug } = router.query;
 
-  if (!slug) return <p>Loading...</p>;
+  const categories = useStore(useCategoryStore, (state) => state.categories);
 
-  const project = projectsMockData.find((project) => project.slug === slug);
+  if (!categories) return <div>Loading categories...</div>;
+  if (!slug) return <p>Loading slug...</p>;
 
-  if (!project) return <div>No Data Found</div>;
+  const category = categories.find((category) => category.slug === slug);
+
+  if (!category) return <div>No Data Found</div>;
 
   return (
     <>
@@ -20,7 +26,7 @@ export default function ProjectPage({ projectsMockData }) {
           {/* use a svg for the back button when it comes to styling */}
           <Button onClick={() => router.back()}>{"<"}</Button>
         </ButtonContainer>
-        <Heading>{project.name}</Heading>
+        <Heading>{category.name}</Heading>
         <Placeholder></Placeholder>
       </Header>
       <hr />
