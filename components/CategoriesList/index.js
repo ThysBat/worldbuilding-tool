@@ -32,7 +32,6 @@ export default function CategoriesList() {
   function handleSave(categoryName) {
     if (categoryName.length < 1) return;
     const newCategory = createNewCategory(categoryName, project.id);
-    console.log(newCategory);
     addCategory(newCategory);
   }
 
