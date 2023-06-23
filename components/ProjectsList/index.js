@@ -2,7 +2,8 @@ import useStore from "../../hook/useStore";
 import { useProjectStore } from "../../stores/useProjectStore";
 import { useRouter } from "next/router";
 
-import AddButtonList from "../AddButtonList";
+import List from "../List";
+import AddInputButton from "../AddInputButton";
 
 export default function ProjectsList() {
   const router = useRouter();
@@ -25,9 +26,8 @@ export default function ProjectsList() {
   }
 
   return (
-    <AddButtonList
-      listItems={sortedProjects}
-      handleSave={handleSave}
-    ></AddButtonList>
+    <List listItems={sortedProjects}>
+      <AddInputButton as="li" handleSave={handleSave}></AddInputButton>
+    </List>
   );
 }

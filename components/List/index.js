@@ -2,14 +2,14 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import LinkedCard from "../LinkedCard";
 
-export default function List({ children, listItems = [] }) {
+export default function List({ children, listItems = [], listStyles = null }) {
   const router = useRouter();
   const path = router.asPath;
 
   if (!path) return <div>Loading...</div>;
 
   return (
-    <StyledList>
+    <StyledList listStyles={listStyles}>
       {children}
       {listItems.map((item) => {
         return (
@@ -24,11 +24,13 @@ export default function List({ children, listItems = [] }) {
   );
 }
 
-export const StyledList = styled.ul`
+export const StyledList = styled.ul.attrs((props) => ({
+  flexDirection: props.listStyles?.flexDirection || "row",
+}))`
   display: flex;
   gap: 1rem;
 
-  flex-direction: row;
+  flex-direction: ${(props) => props.flexDirection};
   flex-wrap: wrap;
   padding-left: 1rem;
 

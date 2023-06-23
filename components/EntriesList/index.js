@@ -3,7 +3,9 @@ import { useEntryStore } from "../../stores/useEntryStore";
 import { useCategoryStore } from "../../stores/useCategoryStore";
 import { useRouter } from "next/router";
 
-import AddButtonList from "../AddButtonList";
+import styled from "styled-components";
+import List from "../List";
+import AddInputButton from "../AddInputButton";
 
 export default function EntriesList() {
   const router = useRouter();
@@ -30,12 +32,15 @@ export default function EntriesList() {
     addEntry(newEntry);
   }
 
+  const listStyles = {
+    flexDirection: "column",
+  };
+
   return (
-    <AddButtonList
-      listItems={sortedEntries}
-      handleSave={handleSave}
-      listStyles={{}}
-      listItemStyles={{}}
-    ></AddButtonList>
+    <>
+      <List listItems={sortedEntries} listStyles={listStyles}>
+        <AddInputButton as="li" handleSave={handleSave}></AddInputButton>
+      </List>
+    </>
   );
 }

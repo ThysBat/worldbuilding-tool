@@ -6,7 +6,7 @@ import Card from "../Card";
 import Input from "../InputField";
 import Button from "../Button";
 
-export default function AddButtonList({ listItems, handleSave }) {
+export default function AddInputButton({ handleSave }) {
   const [inputState, setInputState] = useState(false);
   const [inputWidth, setInputWidth] = useState("6.5rem");
 
@@ -16,25 +16,23 @@ export default function AddButtonList({ listItems, handleSave }) {
   }
 
   return (
-    <List listItems={listItems}>
-      <FirstListItem inputWidth={inputWidth}>
-        {inputState ? (
-          <Input
-            width={inputWidth}
-            onCancel={toggleNewProjectInput}
-            onSave={handleSave}
-          ></Input>
-        ) : (
-          <Button type="button" onClick={toggleNewProjectInput}>
-            <Card>{"➕"}</Card>
-          </Button>
-        )}
-      </FirstListItem>
-    </List>
+    <InputButtonContainer inputWidth={inputWidth}>
+      {inputState ? (
+        <Input
+          width={inputWidth}
+          onCancel={toggleNewProjectInput}
+          onSave={handleSave}
+        ></Input>
+      ) : (
+        <Button type="button" onClick={toggleNewProjectInput}>
+          <Card>{"➕"}</Card>
+        </Button>
+      )}
+    </InputButtonContainer>
   );
 }
 
-const FirstListItem = styled.li`
+const InputButtonContainer = styled.div`
   width: ${({ inputWidth }) => inputWidth};
   transition: width 0.6s ease-out;
   margin-right: ${({ inputWidth }) => (inputWidth === "100%" ? "1rem" : 0)};
