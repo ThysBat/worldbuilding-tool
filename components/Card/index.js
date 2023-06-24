@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledSpan = styled.span`
+const Card = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,6 +14,4 @@ const StyledSpan = styled.span`
   padding: 2px;
 `;
 
-export default function Card({ children, width }) {
-  return <StyledSpan style={{ width: width }}>{children}</StyledSpan>;
-}
+export default Card;

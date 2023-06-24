@@ -1,18 +1,17 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import List from "../List";
 import Card from "../Card";
 import Input from "../InputField";
 import Button from "../Button";
 
 export default function AddInputButton({ handleSave }) {
   const [inputState, setInputState] = useState(false);
-  const [inputWidth, setInputWidth] = useState("6.5rem");
+  const [inputWidth, setInputWidth] = useState("var(--card-size)");
 
   function toggleNewProjectInput() {
     setInputState(!inputState);
-    setInputWidth(!inputState ? "100%" : "6.5rem");
+    setInputWidth(!inputState ? "100%" : "var(--card-size)");
   }
 
   return (

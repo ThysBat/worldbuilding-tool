@@ -32,13 +32,9 @@ export default function EntriesList() {
     addEntry(newEntry);
   }
 
-  const listStyles = {
-    flexDirection: "column",
-  };
-
   return (
     <>
-      <List listItems={sortedEntries} listStyles={listStyles}>
+      <List listItems={sortedEntries} listStyles={"column"}>
         <AddInputButton as="li" handleSave={handleSave}></AddInputButton>
       </List>
     </>
