@@ -27,11 +27,19 @@ export default function List({ children, listItems = [], listStyles = "row" }) {
 
 const StyledCard = styled(Card)`
   height: ${({ listStyles }) =>
-    listStyles === "column" ? "3rem" : "var(--card-size)"};
+    listStyles === "column" ? "3rem" : "var(--card-size-m)"};
   width: ${({ listStyles }) =>
-    listStyles === "column" ? "100%" : "var(--card-size)"};
+    listStyles === "column" ? "100%" : "var(--card-size-m)"};
 
-  /* justify-content: flex-start; */
+  justify-content: ${({ listStyles }) =>
+    listStyles === "column" ? "flex-start" : "center"};
+
+  border-radius: ${({ listStyles }) =>
+    listStyles === "column"
+      ? "var(--border-radius-s)"
+      : "var(--border-radius-m)"};
+
+  padding: ${({ listStyles }) => (listStyles === "column" ? "0 1rem" : "0")};
 `;
 
 export const StyledList = styled.ul`
@@ -41,9 +49,8 @@ export const StyledList = styled.ul`
   flex-direction: ${({ listStyles }) =>
     listStyles === "column" ? "column" : "row"};
   flex-wrap: wrap;
-  padding-left: 1rem;
-  padding-right: ${({ listStyles }) =>
-    listStyles === "column" ? "1rem" : "unset"};
+
+  padding: 0.5rem;
 
   text-align: center;
   list-style: none;

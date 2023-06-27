@@ -1,38 +1,97 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { useRef } from "react";
 
 import Card from "../Card";
-import Input from "../InputField";
 import Button from "../Button";
 
-export default function AddInputButton({ handleSave }) {
+export default function AddInputButton({ handleSave, styles = "row" }) {
   const [inputState, setInputState] = useState(false);
-  const [inputWidth, setInputWidth] = useState("var(--card-size)");
+  const [inputWidth, setInputWidth] = useState(
+    styles === "column" ? "100%" : "var(--card-size-m)"
+  );
+
+  const [inputValue, setInputValue] = useState("");
+  const ref = useRef(null);
+
+  function onClickSave() {
+    handleSave(inputValue);
+    setInputValue("");
+    ref.current.focus();
+  }
 
   function toggleNewProjectInput() {
     setInputState(!inputState);
-    setInputWidth(!inputState ? "100%" : "var(--card-size)");
+    if (styles === "row")
+      setInputWidth(!inputState ? "100%" : "var(--card-size-m)");
   }
 
   return (
-    <InputButtonContainer inputWidth={inputWidth}>
+    <InputButtonContainer width={inputWidth} styles={styles}>
       {inputState ? (
-        <Input
-          width={inputWidth}
-          onCancel={toggleNewProjectInput}
-          onSave={handleSave}
-        ></Input>
+        <InputWrapper styles={styles}>
+          <StyledButton type="button" onClick={toggleNewProjectInput}>
+            <span role="img">❌</span>
+          </StyledButton>
+          <StyledInput
+            ref={ref}
+            type="text"
+            value={inputValue}
+            onChange={(event) => setInputValue(event.target.value)}
+          />
+          <StyledButton type="button" onClick={onClickSave}>
+            <span role="img">✔️</span>
+          </StyledButton>
+        </InputWrapper>
       ) : (
         <Button type="button" onClick={toggleNewProjectInput}>
-          <Card>{"➕"}</Card>
+          <StyledCard width={inputWidth} styles={styles}>
+            {"➕"}
+          </StyledCard>
         </Button>
       )}
     </InputButtonContainer>
   );
 }
 
+const StyledCard = styled(Card)`
+  width: ${({ width }) => width};
+  height: ${({ styles }) =>
+    styles === "column" ? "var(--card-size-s)" : "var(--card-size-m)"};
+  border-radius: ${({ styles }) =>
+    styles === "column" ? "var(--border-radius-s)" : "var(--border-radius-m)"};
+`;
+
 const InputButtonContainer = styled.div`
-  width: ${({ inputWidth }) => inputWidth};
+  width: ${({ width }) => width};
+  height: ${({ styles }) =>
+    styles === "column" ? "var(--card-size-s)" : "var(--card-size-m)"};
   transition: width 0.6s ease-out;
-  margin-right: ${({ inputWidth }) => (inputWidth === "100%" ? "1rem" : 0)};
+`;
+
+const InputWrapper = styled(Card)`
+  width: 100%;
+  height: ${({ styles }) =>
+    styles === "column" ? "var(--card-size-s)" : "var(--card-size-m)"};
+  border-radius: ${({ styles }) =>
+    styles === "column" ? "var(--border-radius-s)" : "var(--border-radius-m)"};
+`;
+
+const StyledButton = styled(Button)`
+  width: 10%;
+  margin: 1rem;
+`;
+
+const StyledInput = styled.input`
+  width: 70%;
+  padding: 1rem;
+  opacity: 30%;
+
+  border: none;
+  border-radius: var(--border-radius-s);
+
+  &:focus {
+    outline: none;
+    opacity: 40%;
+  }
 `;

@@ -13,12 +13,8 @@ export default function CategoriesList() {
 
   if (!router || !categoryStore || !projectStore) return <div>Loading...</div>;
 
-  const {
-    categories,
-    createNewCategory,
-    addCategory,
-    getCategoriesByProjectId,
-  } = categoryStore;
+  const { createNewCategory, addCategory, getCategoriesByProjectId } =
+    categoryStore;
   const { projects } = projectStore;
   const { projectSlug: slug } = router.query;
 

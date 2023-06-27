@@ -3,7 +3,6 @@ import { useEntryStore } from "../../stores/useEntryStore";
 import { useCategoryStore } from "../../stores/useCategoryStore";
 import { useRouter } from "next/router";
 
-import styled from "styled-components";
 import List from "../List";
 import AddInputButton from "../AddInputButton";
 
@@ -33,10 +32,12 @@ export default function EntriesList() {
   }
 
   return (
-    <>
-      <List listItems={sortedEntries} listStyles={"column"}>
-        <AddInputButton as="li" handleSave={handleSave}></AddInputButton>
-      </List>
-    </>
+    <List listItems={sortedEntries} listStyles={"column"}>
+      <AddInputButton
+        as="li"
+        handleSave={handleSave}
+        styles={"column"}
+      ></AddInputButton>
+    </List>
   );
 }
