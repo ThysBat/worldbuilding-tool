@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
-import useStore from "../../../../hook/useStore";
-import { useCategoryStore } from "../../../../stores/useCategoryStore";
+import useStore from "../../../../../hook/useStore";
+import { useCategoryStore } from "../../../../../stores/useCategoryStore";
 
 import styled from "styled-components";
-import Heading from "../../../../components/Heading";
-import StyledButton from "../../../../components/Button";
-import EntriesList from "../../../../components/EntriesList";
+import Heading from "../../../../../components/Heading";
+import StyledButton from "../../../../../components/Button";
+import EntriesList from "../../../../../components/EntriesList";
 
 export default function CategoryPage() {
   const router = useRouter();
