@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 
 import { uid } from "uid";
 
-const sectionsList = [
+const articlesList = [
   {
     id: 1,
     title: "Introduction",
@@ -20,31 +20,31 @@ const sectionsList = [
   },
 ];
 
-function createNewSection(section, entryId) {
+function createNewArticle(article, entryId) {
   return {
     id: uid(),
-    title: section.title,
-    content: section.content,
+    title: article.title,
+    content: article.content,
     entryId,
   };
 }
 
-function getSectionsByEntry(entryId, sections) {
-  return sections.slice().filter((entry) => entry.entryId === entryId);
+function getArticlesByEntry(entryId, articles) {
+  return articles.slice().filter((entry) => entry.entryId === entryId);
 }
 
-export const useSectionStore = create(
+export const useArticleStore = create(
   persist(
     (set, get) => ({
-      sections: sectionsList,
-      createNewSection,
+      articles: articlesList,
+      createNewArticle,
       addSection: (newSection) =>
-        set({ sections: [...get().sections, newSection] }),
-      getSectionsByEntryId: (entryId) =>
-        getSectionsByEntry(entryId, get().sections),
+        set({ articles: [...get().articles, newSection] }),
+      getArticlesByEntryId: (entryId) =>
+        getArticlesByEntry(entryId, get().articles),
     }),
     {
-      name: "sections",
+      name: "articles",
     }
   )
 );

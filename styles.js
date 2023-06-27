@@ -9,7 +9,11 @@ export default createGlobalStyle`
     --border-radius-s: 0.6rem;
     --border-radius-m: 1.6rem;
 
-    --padding-m: 1rem; 
+    --gap-s: 0.5rem;
+    --gap-m: 1rem;
+
+    --padding-s: 0.5rem;
+    --padding-m: 1rem;
   }
 
   *,

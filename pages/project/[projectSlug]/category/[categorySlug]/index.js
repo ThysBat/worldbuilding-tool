@@ -31,7 +31,7 @@ export default function CategoryPage() {
         <Placeholder></Placeholder>
       </Header>
       <hr />
-      <EntriesList></EntriesList>
+      <EntriesList />
     </>
   );
 }
