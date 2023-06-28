@@ -27,8 +27,8 @@ export default function EntryPage() {
 
   const articles = getArticlesByEntryId(entry.id);
 
-  function handleAddArticle({ title, content }) {
-    const newArticle = createNewArticle(title, content, entry.id);
+  function handleAddArticle() {
+    const newArticle = createNewArticle(entry.id);
     addArticle(newArticle);
   }
 

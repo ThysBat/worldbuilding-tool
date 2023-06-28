@@ -21,11 +21,11 @@ const articlesList = [
   },
 ];
 
-function createNewArticle(title, content, entryId) {
+function createNewArticle(entryId) {
   return {
     id: uid(),
-    title: title,
-    content: content,
+    title: "",
+    content: "",
     entryId,
   };
 }
@@ -41,7 +41,7 @@ export const useArticleStore = create(
       createNewArticle,
       addArticle: (newArticle) =>
         set((state) => {
-          state.articles = [...articles, newArticle];
+          state.articles.push(newArticle);
         }),
       getArticleById: (id) =>
         get().articles.find((article) => article.id === id),
