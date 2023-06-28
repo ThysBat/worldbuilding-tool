@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
 
 import { uid } from "uid";
 
@@ -20,31 +21,60 @@ const articlesList = [
   },
 ];
 
-function createNewArticle(article, entryId) {
+function createNewArticle(title, content, entryId) {
   return {
     id: uid(),
-    title: article.title,
-    content: article.content,
+    title: title,
+    content: content,
     entryId,
   };
 }
 
-function getArticlesByEntry(entryId, articles) {
+function handleGetArticlesByEntryId(entryId, articles) {
   return articles.slice().filter((entry) => entry.entryId === entryId);
 }
 
 export const useArticleStore = create(
   persist(
-    (set, get) => ({
+    immer((set, get) => ({
       articles: articlesList,
       createNewArticle,
-      addSection: (newSection) =>
-        set({ articles: [...get().articles, newSection] }),
+      addArticle: (newArticle) =>
+        set((state) => {
+          state.articles = [...articles, newArticle];
+        }),
+      getArticleById: (id) =>
+        get().articles.find((article) => article.id === id),
       getArticlesByEntryId: (entryId) =>
-        getArticlesByEntry(entryId, get().articles),
-    }),
+        handleGetArticlesByEntryId(entryId, get().articles),
+      updateArticle: (id, key, value) => {
+        set((state) => {
+          const index = state.articles.findIndex(
+            (article) => article.id === id
+          );
+          state.articles[index][key] = value;
+        });
+      },
+    })),
     {
       name: "articles",
     }
   )
 );
+
+// store without immer:
+// export const useArticleStore = create(
+//   persist(
+//     (set, get) => ({
+//       articles: articlesList,
+//       createNewArticle,
+//       addArticle: (newArticle) =>
+//         set({ articles: [...get().articles, newArticle] }),
+//       getArticlesByEntryId: (entryId) =>
+//         getArticlesByEntry(entryId, get().articles),
+//     }),
+//     {
+//       name: "articles",
+//     }
+//   )
+// );

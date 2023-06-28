@@ -15,13 +15,22 @@ export default function EntryPage() {
   const { entrySlug: slug } = router.query;
 
   const entries = useStore(useEntryStore, (state) => state.entries);
-  const articles = useStore(useArticleStore, (state) => state.articles);
+  const articleStore = useStore(useArticleStore, (state) => state);
 
-  if (!entries || !articles || !slug) return <div>Loading...</div>;
+  if (!entries || !articleStore || !slug) return <div>Loading...</div>;
 
+  const { createNewArticle, addArticle, getArticlesByEntryId, updateArticle } =
+    articleStore;
   const entry = entries.find((entry) => entry.slug === slug);
 
   if (!entry) return <div>No Data Found</div>;
+
+  const articles = getArticlesByEntryId(entry.id);
+
+  function handleAddArticle({ title, content }) {
+    const newArticle = createNewArticle(title, content, entry.id);
+    addArticle(newArticle);
+  }
 
   return (
     <>
@@ -36,14 +45,14 @@ export default function EntryPage() {
         <Placeholder />
       </Header>
       <hr />
-      <AddSectionButton type="button" onClick={() => console.log(entry)}>
-        <StyledCard>Add Section</StyledCard>
-      </AddSectionButton>
+      <AddArticleButton type="button" onClick={handleAddArticle}>
+        <StyledCard>Add Article</StyledCard>
+      </AddArticleButton>
       <StyledList listStyles="column">
-        {articles.map(({ id, title, content }) => {
+        {articles.map((article) => {
           return (
-            <li key={id}>
-              <ArticleCard title={title} content={content} />
+            <li key={article.id}>
+              <ArticleCard article={article} handleUpdate={updateArticle} />
             </li>
           );
         })}
@@ -73,7 +82,7 @@ const Placeholder = styled.div`
 
 const paddingGroup = "var(--padding-s)";
 
-const AddSectionButton = styled(Button)`
+const AddArticleButton = styled(Button)`
   width: calc(100vw - calc(2 * ${paddingGroup}));
   height: var(--card-size-s);
   border-radius: var(--border-radius-s);

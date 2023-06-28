@@ -9,6 +9,7 @@ export default createGlobalStyle`
     --border-radius-s: 0.6rem;
     --border-radius-m: 1.6rem;
 
+    --gap-xs: 0.18rem;
     --gap-s: 0.5rem;
     --gap-m: 1rem;
 
