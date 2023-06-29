@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
 
 import slugify from "slugify";
 import { uid } from "uid";
@@ -68,7 +69,7 @@ function createNewCategory(categoryName, projectId) {
   };
 }
 
-function getCategoriesByProject(projectId, categories) {
+function handleGetCategoriesByProjectId(projectId, categories) {
   return categories
     .slice()
     .filter((category) => category.projectId == projectId);
@@ -76,14 +77,24 @@ function getCategoriesByProject(projectId, categories) {
 
 export const useCategoryStore = create(
   persist(
-    (set, get) => ({
+    immer((set, get) => ({
       categories: categoriesList,
       createNewCategory,
       addCategory: (newCategory) =>
-        set({ categories: [...get().categories, newCategory] }),
+        set((state) => {
+          state.categories.push(newCategory);
+        }),
       getCategoriesByProjectId: (projectId) =>
-        getCategoriesByProject(projectId, get().categories),
-    }),
+        handleGetCategoriesByProjectId(projectId, get().categories),
+      deleteCategory: (id) => {
+        set((state) => {
+          const index = state.categories.findIndex(
+            (category) => category.id == id
+          );
+          state.categories.splice(index, 1);
+        });
+      },
+    })),
     {
       name: "categories",
     }

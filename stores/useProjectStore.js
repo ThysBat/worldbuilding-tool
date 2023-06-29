@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
 
 import slugify from "slugify";
 import { uid } from "uid";
@@ -49,12 +50,20 @@ function createNewProject(projectName) {
 
 export const useProjectStore = create(
   persist(
-    (set, get) => ({
+    immer((set, get) => ({
       projects: projectsList,
       createNewProject,
       addProject: (newProject) =>
-        set({ projects: [...get().projects, newProject] }),
-    }),
+        set((state) => {
+          state.projects.push(newProject);
+        }),
+      deleteProject: (id) => {
+        set((state) => {
+          const index = state.projects.findIndex((project) => project.id == id);
+          state.projects.splice(index, 1);
+        });
+      },
+    })),
     {
       name: "projects",
     }
