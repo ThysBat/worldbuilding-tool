@@ -28,6 +28,8 @@ export default function EntryPage() {
   const { getEntryById, updateEntry, deleteEntry } = entryStore;
   const entry = getEntryById(id);
 
+  if (!entry) return <div>Loading...</div>;
+
   const articles = getArticlesByEntryId(entry.id);
 
   function handleAddArticle() {
@@ -54,8 +56,8 @@ export default function EntryPage() {
   }
 
   function handleDeleteEntry() {
-    // deleteEntry(id);
-    // router.push(`${router.query.projectSlug}/${router.query.categorySlug}`);
+    deleteEntry(id);
+    router.back();
   }
 
   return (
