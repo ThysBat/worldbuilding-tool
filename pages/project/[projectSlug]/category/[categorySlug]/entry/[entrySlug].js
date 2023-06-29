@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import useStore from "../../../../../../hook/useStore";
 import { useEntryStore } from "../../../../../../stores/useEntryStore";
 import { useArticleStore } from "../../../../../../stores/useArticleStore";
+import { useState } from "react";
 
 import styled from "styled-components";
 import Heading from "../../../../../../components/Heading";
@@ -9,7 +10,7 @@ import Button from "../../../../../../components/Button";
 import Card from "../../../../../../components/Card";
 import ArticleCard from "../../../../../../components/ArticleCard";
 import { StyledList } from "../../../../../../components/List";
-import { useState } from "react";
+import DeleteButton from "../../../../../../components/DeleteButton";
 
 export default function EntryPage() {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function EntryPage() {
 
   const { createNewArticle, addArticle, getArticlesByEntryId, updateArticle } =
     articleStore;
-  const { getEntryById, updateEntry } = entryStore;
+  const { getEntryById, updateEntry, deleteEntry } = entryStore;
   const entry = getEntryById(id);
 
   const articles = getArticlesByEntryId(entry.id);
@@ -50,6 +51,11 @@ export default function EntryPage() {
     } else {
       router.back();
     }
+  }
+
+  function handleDeleteEntry() {
+    // deleteEntry(id);
+    // router.push(`${router.query.projectSlug}/${router.query.categorySlug}`);
   }
 
   return (
@@ -94,6 +100,10 @@ export default function EntryPage() {
           );
         })}
       </StyledList>
+      <DeleteButton
+        type={entry.name}
+        onClick={handleDeleteEntry}
+      ></DeleteButton>
     </>
   );
 }

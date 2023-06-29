@@ -59,6 +59,12 @@ export const useEntryStore = create(
           state.entries[index].slug = slugify(name, { lower: true });
         });
       },
+      deleteEntry: (id) => {
+        set((state) => {
+          const index = state.entries.findIndex((entry) => entry.id == id);
+          state.entries.splice(index, 1);
+        });
+      },
     })),
     {
       name: "entries",
