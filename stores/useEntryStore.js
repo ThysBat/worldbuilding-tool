@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
 
 import slugify from "slugify";
 import { uid } from "uid";
@@ -14,8 +15,8 @@ const entriesList = [
   },
   {
     id: 2,
-    name: "Black Magic",
-    slug: "black-magic",
+    name: "Dark Magic",
+    slug: "dark-magic",
     pathPrefix: "/entry/",
     categoryId: 3,
   },
@@ -33,7 +34,7 @@ function createNewEntry(entryName, categoryId) {
   };
 }
 
-function getEntriesByCategory(categoryId, entries) {
+function handleGetEntriesByCategoryId(categoryId, entries) {
   return entries
     .slice()
     .filter((category) => category.categoryId === categoryId);
@@ -41,15 +42,41 @@ function getEntriesByCategory(categoryId, entries) {
 
 export const useEntryStore = create(
   persist(
-    (set, get) => ({
+    immer((set, get) => ({
       entries: entriesList,
       createNewEntry,
-      addEntry: (newEntry) => set({ entries: [...get().entries, newEntry] }),
+      addEntry: (newEntry) =>
+        set((state) => {
+          state.entries.push(newEntry);
+        }),
+      getEntryById: (id) => get().entries.find((entry) => entry.id == id),
       getEntriesByCategoryId: (categoryId) =>
-        getEntriesByCategory(categoryId, get().entries),
-    }),
+        handleGetEntriesByCategoryId(categoryId, get().entries),
+      updateEntry: (id, name) => {
+        set((state) => {
+          const index = state.entries.findIndex((entry) => entry.id == id);
+          state.entries[index].name = name;
+          state.entries[index].slug = slugify(name, { lower: true });
+        });
+      },
+    })),
     {
       name: "entries",
     }
   )
 );
+
+// export const useEntryStore = create(
+//   persist(
+//     (set, get) => ({
+//       entries: entriesList,
+//       createNewEntry,
+//       addEntry: (newEntry) => set({ entries: [...get().entries, newEntry] }),
+//       getEntriesByCategoryId: (categoryId) =>
+//         handleGetEntriesByCategoryId(categoryId, get().entries),
+//     }),
+//     {
+//       name: "entries",
+//     }
+//   )
+// );

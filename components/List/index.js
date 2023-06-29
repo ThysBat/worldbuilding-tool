@@ -15,7 +15,12 @@ export default function List({ children, listItems = [], listStyles = "row" }) {
       {listItems.map((item) => {
         return (
           <li key={item.id}>
-            <Link href={path + item.pathPrefix + item.slug}>
+            <Link
+              href={{
+                pathname: path + item.pathPrefix + item.slug,
+                query: { id: item.id },
+              }}
+            >
               <StyledCard listStyles={listStyles}>{item.name}</StyledCard>
             </Link>
           </li>

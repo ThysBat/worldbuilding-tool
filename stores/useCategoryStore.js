@@ -64,7 +64,7 @@ function createNewCategory(categoryName, projectId) {
 function getCategoriesByProject(projectId, categories) {
   return categories
     .slice()
-    .filter((category) => category.projectId === projectId);
+    .filter((category) => category.projectId == projectId);
 }
 
 export const useCategoryStore = create(

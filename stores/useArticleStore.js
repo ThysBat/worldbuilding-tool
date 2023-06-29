@@ -9,14 +9,14 @@ const articlesList = [
     id: 1,
     title: "Introduction",
     content:
-      "Black Magic is one of two sources of magic in this world. Black magic can use every energy that consists of a dark or negative aura.",
+      "Dark Magic is one of two sources of magic in this world. Dark magic can use every energy that consists of a dark or negative aura.",
     entryId: 2,
   },
   {
     id: 2,
     title: "Usecases",
     content:
-      "Black magic is used everywhere where there is suffering that wants to be turned into something good. But beware, do not try and change the energy you want to use for your magic!",
+      "Dark magic is used everywhere where there is suffering that wants to be turned into something good. But beware, do not try and change the energy you want to use for your magic!",
     entryId: 2,
   },
 ];
@@ -44,14 +44,12 @@ export const useArticleStore = create(
           state.articles.push(newArticle);
         }),
       getArticleById: (id) =>
-        get().articles.find((article) => article.id === id),
+        get().articles.find((article) => article.id == id),
       getArticlesByEntryId: (entryId) =>
         handleGetArticlesByEntryId(entryId, get().articles),
       updateArticle: (id, key, value) => {
         set((state) => {
-          const index = state.articles.findIndex(
-            (article) => article.id === id
-          );
+          const index = state.articles.findIndex((article) => article.id == id);
           state.articles[index][key] = value;
         });
       },

@@ -9,21 +9,23 @@ import Button from "../../../../../../components/Button";
 import Card from "../../../../../../components/Card";
 import ArticleCard from "../../../../../../components/ArticleCard";
 import { StyledList } from "../../../../../../components/List";
+import { useState } from "react";
 
 export default function EntryPage() {
   const router = useRouter();
-  const { entrySlug: slug } = router.query;
+  const { entrySlug: slug, id } = router.query;
+  const [entryName, setEntryName] = useState("");
+  const [editEntryNameState, setEditEntryNameState] = useState(false);
 
-  const entries = useStore(useEntryStore, (state) => state.entries);
   const articleStore = useStore(useArticleStore, (state) => state);
+  const entryStore = useStore(useEntryStore, (state) => state);
 
-  if (!entries || !articleStore || !slug) return <div>Loading...</div>;
+  if (!entryStore || !articleStore || !slug) return <div>Loading...</div>;
 
   const { createNewArticle, addArticle, getArticlesByEntryId, updateArticle } =
     articleStore;
-  const entry = entries.find((entry) => entry.slug === slug);
-
-  if (!entry) return <div>No Data Found</div>;
+  const { getEntryById, updateEntry } = entryStore;
+  const entry = getEntryById(id);
 
   const articles = getArticlesByEntryId(entry.id);
 
@@ -32,17 +34,52 @@ export default function EntryPage() {
     addArticle(newArticle);
   }
 
+  function handleUpdateEntryName() {
+    updateEntry(id, entryName);
+    toggleEditEntryName();
+  }
+
+  function toggleEditEntryName() {
+    setEntryName(entry.name);
+    setEditEntryNameState(!editEntryNameState);
+  }
+
+  function handleBackButton() {
+    if (editEntryNameState) {
+      setEditEntryNameState(!editEntryNameState);
+    } else {
+      router.back();
+    }
+  }
+
   return (
     <>
       <Header>
         <ButtonContainer>
           {/* use a svg for the back button when it comes to styling */}
-          <StyledButton type="button" onClick={() => router.back()}>
+          <StyledButton type="button" onClick={handleBackButton}>
             {"<"}
           </StyledButton>
         </ButtonContainer>
-        <Heading>{entry.name}</Heading>
-        <Placeholder />
+        {!editEntryNameState ? (
+          <>
+            <Heading>{entry.name}</Heading>
+            <EditButton onClick={toggleEditEntryName}>
+              <span role="img">🖊️</span>
+            </EditButton>
+          </>
+        ) : (
+          <>
+            <StyledEntryNameInput
+              type="text"
+              value={entryName}
+              onChange={(event) => setEntryName(event.target.value)}
+            />
+            <StyledInputButton type="button" onClick={handleUpdateEntryName}>
+              <span role="img">✔️</span>
+            </StyledInputButton>
+          </>
+        )}
       </Header>
       <hr />
       <AddArticleButton type="button" onClick={handleAddArticle}>
@@ -76,7 +113,7 @@ const StyledButton = styled(Button)`
   font-size: 2rem;
 `;
 
-const Placeholder = styled.div`
+const EditButton = styled(Button)`
   flex: 1;
 `;
 
@@ -94,4 +131,47 @@ const StyledCard = styled(Card)`
   width: inherit;
   height: inherit;
   border-radius: inherit;
+`;
+
+const InputWrapper = styled(Card)`
+  width: 100%;
+  height: ${({ styles }) =>
+    styles === "column" ? "var(--card-size-s)" : "var(--card-size-m)"};
+  border-radius: ${({ styles }) =>
+    styles === "column" ? "var(--border-radius-s)" : "var(--border-radius-m)"};
+
+  background-color: unset;
+`;
+
+const StyledInputButton = styled(Button)`
+  width: 10%;
+  margin: 1rem;
+  font-size: 1.2rem;
+  flex: 1;
+`;
+
+const StyledEntryNameInput = styled.input`
+  margin: 0;
+  padding: 0;
+
+  width: 70%;
+  opacity: 30%;
+
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+
+  border: none;
+  border-radius: var(--border-radius-s);
+
+  font-size: 2em;
+  margin: 1rem 0;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+
+  &:focus {
+    outline: none;
+    opacity: 40%;
+  }
 `;
