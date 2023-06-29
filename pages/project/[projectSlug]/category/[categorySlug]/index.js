@@ -13,8 +13,7 @@ export default function CategoryPage() {
 
   const categories = useStore(useCategoryStore, (state) => state.categories);
 
-  if (!categories) return <div>Loading categories...</div>;
-  if (!slug) return <p>Loading slug...</p>;
+  if (!slug || !categories) return <div>Loading...</div>;
 
   const category = categories.find((category) => category.slug === slug);
 

@@ -11,6 +11,7 @@ const entriesList = [
     name: "Airships",
     slug: "airships",
     pathPrefix: "/entry/",
+    type: "entry",
     categoryId: 3,
   },
   {
@@ -18,6 +19,7 @@ const entriesList = [
     name: "Dark Magic",
     slug: "dark-magic",
     pathPrefix: "/entry/",
+    type: "entry",
     categoryId: 3,
   },
 ];
@@ -30,6 +32,7 @@ function createNewEntry(entryName, categoryId) {
     name: entryName,
     slug: slug,
     pathPrefix: "/entry/",
+    type: "entry",
     categoryId,
   };
 }

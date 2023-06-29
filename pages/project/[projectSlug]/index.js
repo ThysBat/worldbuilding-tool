@@ -13,8 +13,7 @@ export default function ProjectPage() {
 
   const projects = useStore(useProjectStore, (state) => state.projects);
 
-  if (!projects) return <div>Loading...</div>;
-  if (!slug) return <p>Loading...</p>;
+  if (!slug || !projects) return <div>Loading...</div>;
 
   const project = projects.find((project) => project.slug === slug);
 

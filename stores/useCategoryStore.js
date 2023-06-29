@@ -10,6 +10,7 @@ const categoriesList = [
     name: "Geography and Nature",
     slug: "geography-and-nature",
     pathPrefix: "/category/",
+    type: "category",
     projectId: 2,
   },
   {
@@ -17,6 +18,7 @@ const categoriesList = [
     name: "Culture",
     slug: "culture",
     pathPrefix: "/category/",
+    type: "category",
     projectId: 2,
   },
   {
@@ -24,6 +26,7 @@ const categoriesList = [
     name: "Magic and Technology",
     slug: "magic-and-technology",
     pathPrefix: "/category/",
+    type: "category",
     projectId: 1,
   },
   {
@@ -31,6 +34,7 @@ const categoriesList = [
     name: "Geography and Nature",
     slug: "geography-and-nature",
     pathPrefix: "/category/",
+    type: "category",
     projectId: 1,
   },
   {
@@ -38,6 +42,7 @@ const categoriesList = [
     name: "Population and Politics",
     slug: "population-and-politics",
     pathPrefix: "/category/",
+    type: "category",
     projectId: 2,
   },
   {
@@ -45,6 +50,7 @@ const categoriesList = [
     name: "Culture",
     slug: "culture",
     pathPrefix: "/category/",
+    type: "category",
     projectId: 1,
   },
 ];
@@ -57,6 +63,7 @@ function createNewCategory(categoryName, projectId) {
     name: categoryName,
     slug: slug,
     pathPrefix: "/category/",
+    type: "category",
     projectId: projectId,
   };
 }

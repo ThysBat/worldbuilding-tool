@@ -10,6 +10,7 @@ const articlesList = [
     title: "Introduction",
     content:
       "Dark Magic is one of two sources of magic in this world. Dark magic can use every energy that consists of a dark or negative aura.",
+    type: "article",
     entryId: 2,
   },
   {
@@ -17,6 +18,7 @@ const articlesList = [
     title: "Usecases",
     content:
       "Dark magic is used everywhere where there is suffering that wants to be turned into something good. But beware, do not try and change the energy you want to use for your magic!",
+    type: "article",
     entryId: 2,
   },
 ];
@@ -26,6 +28,7 @@ function createNewArticle(entryId) {
     id: uid(),
     title: "",
     content: "",
+    type: "article",
     entryId,
   };
 }

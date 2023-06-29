@@ -10,24 +10,28 @@ const projectsList = [
     name: "Over the Skies",
     slug: "over-the-skies",
     pathPrefix: "project/",
+    type: "project",
   },
   {
     id: 2,
     name: "Aventurien",
     slug: "aventurien",
     pathPrefix: "project/",
+    type: "project",
   },
   {
     id: 3,
     name: "Space World",
     slug: "space-world",
     pathPrefix: "project/",
+    type: "project",
   },
   {
     id: 4,
     name: "Middle Earth",
     slug: "middle-earth",
     pathPrefix: "project/",
+    type: "project",
   },
 ];
 
@@ -39,6 +43,7 @@ function createNewProject(projectName) {
     name: projectName,
     slug: slug,
     pathPrefix: "project/",
+    type: "project",
   };
 }
 
