@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// just export this as default
 const Button = styled.button`
   border: none;
   background-color: transparent;
@@ -8,6 +7,8 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 100%;
 `;
 
 export default Button;

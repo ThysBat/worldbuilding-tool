@@ -40,6 +40,13 @@ const categoriesList = [
     pathPrefix: "/category/",
     projectId: 2,
   },
+  {
+    id: 6,
+    name: "Culture",
+    slug: "culture",
+    pathPrefix: "/category/",
+    projectId: 1,
+  },
 ];
 
 function createNewCategory(categoryName, projectId) {
@@ -57,7 +64,7 @@ function createNewCategory(categoryName, projectId) {
 function getCategoriesByProject(projectId, categories) {
   return categories
     .slice()
-    .filter((category) => category.projectId === projectId);
+    .filter((category) => category.projectId == projectId);
 }
 
 export const useCategoryStore = create(

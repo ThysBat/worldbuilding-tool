@@ -1,15 +1,12 @@
-import Link from "next/link";
 import styled from "styled-components";
 
-const StyledSpan = styled.span`
-  /* take note that the children is not centered when the card
-  is too small and there is no opportunity to wrap */
+const Card = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: var(--card-size);
-  height: var(--card-size);
+  width: var(--card-size-m);
+  height: var(--card-size-m);
 
   background-color: lightblue;
 
@@ -17,6 +14,4 @@ const StyledSpan = styled.span`
   padding: 2px;
 `;
 
-export default function Card({ children, width }) {
-  return <StyledSpan style={{ width: width }}>{children}</StyledSpan>;
-}
+export default Card;

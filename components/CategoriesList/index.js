@@ -3,7 +3,8 @@ import { useCategoryStore } from "../../stores/useCategoryStore";
 import { useProjectStore } from "../../stores/useProjectStore";
 import { useRouter } from "next/router";
 
-import AddButtonList from "../AddButtonList";
+import List from "../List";
+import AddInputButton from "../AddInputButton";
 
 export default function CategoriesList() {
   const router = useRouter();
@@ -12,12 +13,8 @@ export default function CategoriesList() {
 
   if (!router || !categoryStore || !projectStore) return <div>Loading...</div>;
 
-  const {
-    categories,
-    createNewCategory,
-    addCategory,
-    getCategoriesByProjectId,
-  } = categoryStore;
+  const { createNewCategory, addCategory, getCategoriesByProjectId } =
+    categoryStore;
   const { projects } = projectStore;
   const { projectSlug: slug } = router.query;
 
@@ -36,9 +33,8 @@ export default function CategoriesList() {
   }
 
   return (
-    <AddButtonList
-      listItems={sortedCategories}
-      handleSave={handleSave}
-    ></AddButtonList>
+    <List listItems={sortedCategories}>
+      <AddInputButton as="li" handleSave={handleSave}></AddInputButton>
+    </List>
   );
 }
