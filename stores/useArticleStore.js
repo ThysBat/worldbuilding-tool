@@ -56,26 +56,15 @@ export const useArticleStore = create(
           state.articles[index][key] = value;
         });
       },
+      deleteArticle: (id) => {
+        set((state) => {
+          const index = state.articles.findIndex((article) => article.id == id);
+          state.articles.splice(index, 1);
+        });
+      },
     })),
     {
       name: "articles",
     }
   )
 );
-
-// store without immer:
-// export const useArticleStore = create(
-//   persist(
-//     (set, get) => ({
-//       articles: articlesList,
-//       createNewArticle,
-//       addArticle: (newArticle) =>
-//         set({ articles: [...get().articles, newArticle] }),
-//       getArticlesByEntryId: (entryId) =>
-//         getArticlesByEntry(entryId, get().articles),
-//     }),
-//     {
-//       name: "articles",
-//     }
-//   )
-// );

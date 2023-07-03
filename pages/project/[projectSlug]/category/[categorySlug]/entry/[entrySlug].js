@@ -23,8 +23,13 @@ export default function EntryPage() {
 
   if (!entryStore || !articleStore || !slug) return <div>Loading...</div>;
 
-  const { createNewArticle, addArticle, getArticlesByEntryId, updateArticle } =
-    articleStore;
+  const {
+    createNewArticle,
+    addArticle,
+    getArticlesByEntryId,
+    updateArticle,
+    deleteArticle,
+  } = articleStore;
   const { getEntryById, updateEntry, deleteEntry } = entryStore;
   const entry = getEntryById(id);
 
@@ -97,15 +102,22 @@ export default function EntryPage() {
         {articles.map((article) => {
           return (
             <li key={article.id}>
-              <ArticleCard article={article} handleUpdate={updateArticle} />
+              <ArticleCard
+                article={article}
+                handleUpdate={updateArticle}
+                handleDelete={deleteArticle}
+              />
             </li>
           );
         })}
       </StyledList>
       <DeleteButton
-        type={entry.name}
-        onClick={handleDeleteEntry}
-      ></DeleteButton>
+        handleDelete={handleDeleteEntry}
+        itemType={entry.type}
+        itemName={entry.name}
+      >
+        {`Delete '${entry.name}'`}
+      </DeleteButton>
     </>
   );
 }

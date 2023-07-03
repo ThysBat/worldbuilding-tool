@@ -13,8 +13,15 @@ export default createGlobalStyle`
     --gap-s: 0.5rem;
     --gap-m: 1rem;
 
+    --padding-xs: 0.25rem;
     --padding-s: 0.5rem;
     --padding-m: 1rem;
+    
+    --margin-xs: 0.25rem;
+    --margin-s: 0.5rem;
+    --margin-m: 1rem;
+
+    --color-danger: rgba(255, 50, 40, 0.5);
   }
 
   *,

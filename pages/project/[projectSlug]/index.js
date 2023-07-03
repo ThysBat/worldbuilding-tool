@@ -40,9 +40,12 @@ export default function ProjectPage() {
       <hr />
       <CategoriesList></CategoriesList>
       <DeleteButton
-        whatToDelete={project.name}
         handleDelete={handleDeleteProject}
-      />
+        itemType={project.type}
+        itemName={project.name}
+      >
+        {`Delete '${project.name}'`}
+      </DeleteButton>
     </>
   );
 }

@@ -1,8 +1,10 @@
-import Card from "../Card";
-import styled from "styled-components";
 import { useState } from "react";
 
-export default function ArticleCard({ article, handleUpdate }) {
+import styled from "styled-components";
+import Card from "../Card";
+import DeleteButton from "../DeleteButton";
+
+export default function ArticleCard({ article, handleUpdate, handleDelete }) {
   const [title, setTitle] = useState(article.title);
   const [content, setContent] = useState(article.content);
 
@@ -23,6 +25,14 @@ export default function ArticleCard({ article, handleUpdate }) {
         onChange={(event) => setContent(event.target.value)}
         onBlur={() => handleUpdate(article.id, "content", content)}
       />
+      <DeleteButton
+        variant="transparent"
+        handleDelete={() => handleDelete(article.id)}
+        itemType={"article"}
+        itemName={article.title}
+      >
+        Delete
+      </DeleteButton>
     </Article>
   );
 }
@@ -30,10 +40,11 @@ export default function ArticleCard({ article, handleUpdate }) {
 const Article = styled(Card)`
   flex-direction: column;
   gap: var(--gap-xs);
-  padding: var(--padding-s);
+  padding: var(--padding-s) var(--padding-s) var(--padding-xs);
   width: 100%;
   height: unset;
   border-radius: var(--border-radius-s);
+  align-items: flex-end;
 `;
 
 const StyledInput = styled.input`

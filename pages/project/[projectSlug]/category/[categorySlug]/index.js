@@ -40,9 +40,12 @@ export default function CategoryPage() {
       <hr />
       <EntriesList />
       <DeleteButton
-        whatToDelete={category.name}
         handleDelete={handleDeleteCategory}
-      />
+        itemType={category.type}
+        itemName={category.name}
+      >
+        {`Delete '${category.name}'`}
+      </DeleteButton>
     </>
   );
 }
