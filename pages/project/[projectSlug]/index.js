@@ -39,7 +39,10 @@ export default function ProjectPage() {
       </Header>
       <hr />
       <CategoriesList></CategoriesList>
-      <DeleteButton whatToDelete={project.name} onClick={handleDeleteProject} />
+      <DeleteButton
+        whatToDelete={project.name}
+        handleDelete={handleDeleteProject}
+      />
     </>
   );
 }

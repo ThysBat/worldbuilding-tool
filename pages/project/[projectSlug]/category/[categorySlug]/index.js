@@ -41,7 +41,7 @@ export default function CategoryPage() {
       <EntriesList />
       <DeleteButton
         whatToDelete={category.name}
-        onClick={handleDeleteCategory}
+        handleDelete={handleDeleteCategory}
       />
     </>
   );
