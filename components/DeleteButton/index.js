@@ -21,8 +21,7 @@ export default function DeleteButton({
         },
         {
           label: "No",
-          // window.close() closes only the dialogue
-          onClick: () => window.close(),
+          onClick: () => {},
         },
       ],
     });
