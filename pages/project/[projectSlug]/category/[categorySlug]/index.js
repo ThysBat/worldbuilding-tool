@@ -35,7 +35,7 @@ export default function CategoryPage() {
           <Button onClick={() => router.back()}>{"<"}</Button>
         </ButtonContainer>
         <Heading>{category.name}</Heading>
-        <Placeholder></Placeholder>
+        <Placeholder />
       </Header>
       <hr />
       <EntriesList />

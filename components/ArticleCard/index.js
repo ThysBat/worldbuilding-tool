@@ -4,9 +4,26 @@ import styled from "styled-components";
 import Card from "../Card";
 import DeleteButton from "../DeleteButton";
 
-export default function ArticleCard({ article, handleUpdate, handleDelete }) {
+export default function ArticleCard({
+  article,
+  handleUpdate,
+  handleDeleteArticle,
+}) {
   const [title, setTitle] = useState(article.title);
   const [content, setContent] = useState(article.content);
+
+  function handleTitleChange(event) {
+    setTitle(event.target.value);
+  }
+  function handleContentChange(event) {
+    setContent(event.target.value);
+  }
+  function handleTitleBlur() {
+    handleUpdate(article.id, "title", title);
+  }
+  function handleContentBlur() {
+    handleUpdate(article.id, "content", content);
+  }
 
   return (
     <Article as="article">
@@ -14,20 +31,20 @@ export default function ArticleCard({ article, handleUpdate, handleDelete }) {
         type="text"
         placeholder="Title"
         value={title}
-        onChange={(event) => setTitle(event.target.value)}
-        onBlur={() => handleUpdate(article.id, "title", title)}
+        onChange={handleTitleChange}
+        onBlur={handleTitleBlur}
       />
       <StyledInput
         as="textarea"
         rows={4}
         placeholder="Content"
         value={content}
-        onChange={(event) => setContent(event.target.value)}
-        onBlur={() => handleUpdate(article.id, "content", content)}
+        onChange={handleContentChange}
+        onBlur={handleContentBlur}
       />
       <DeleteButton
         variant="transparent"
-        handleDelete={() => handleDelete(article.id)}
+        handleDelete={() => handleDeleteArticle(article.id)}
         itemType={"article"}
         itemName={article.title}
       >

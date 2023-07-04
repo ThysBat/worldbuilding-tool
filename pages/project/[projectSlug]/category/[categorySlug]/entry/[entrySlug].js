@@ -78,7 +78,9 @@ export default function EntryPage() {
           <>
             <Heading>{entry.name}</Heading>
             <EditButton onClick={toggleEditEntryName}>
-              <span role="img">🖊️</span>
+              <span aria-label="edit" role="img">
+                🖊️
+              </span>
             </EditButton>
           </>
         ) : (
@@ -89,7 +91,9 @@ export default function EntryPage() {
               onChange={(event) => setEntryName(event.target.value)}
             />
             <StyledInputButton type="button" onClick={handleUpdateEntryName}>
-              <span role="img">✔️</span>
+              <span aria-label="save entry title" role="img">
+                ✔️
+              </span>
             </StyledInputButton>
           </>
         )}
@@ -105,7 +109,7 @@ export default function EntryPage() {
               <ArticleCard
                 article={article}
                 handleUpdate={updateArticle}
-                handleDelete={deleteArticle}
+                handleDeleteArticle={deleteArticle}
               />
             </li>
           );
