@@ -161,16 +161,6 @@ const StyledCard = styled(Card)`
   border-radius: inherit;
 `;
 
-const InputWrapper = styled(Card)`
-  width: 100%;
-  height: ${({ styles }) =>
-    styles === "column" ? "var(--card-size-s)" : "var(--card-size-m)"};
-  border-radius: ${({ styles }) =>
-    styles === "column" ? "var(--border-radius-s)" : "var(--border-radius-m)"};
-
-  background-color: unset;
-`;
-
 const StyledInputButton = styled(Button)`
   width: 10%;
   margin: 1rem;
@@ -179,7 +169,7 @@ const StyledInputButton = styled(Button)`
 `;
 
 const StyledEntryNameInput = styled.input`
-  margin: 0;
+  margin: 1rem 0;
   padding: 0;
 
   width: 70%;
@@ -191,12 +181,6 @@ const StyledEntryNameInput = styled.input`
 
   border: none;
   border-radius: var(--border-radius-s);
-
-  font-size: 2em;
-  margin: 1rem 0;
-  margin-left: 0;
-  margin-right: 0;
-  font-weight: bold;
 
   &:focus {
     outline: none;
