@@ -5,8 +5,10 @@ import { useCategoryStore } from "../../../../../stores/useCategoryStore";
 import styled from "styled-components";
 import Heading from "../../../../../components/Heading";
 import StyledButton from "../../../../../components/Button";
+import SubcategoriesList from "../../../../../components/SubcategoriesList";
 import EntriesList from "../../../../../components/EntriesList";
 import DeleteButton from "../../../../../components/DeleteButton";
+import ListHeading from "../../../../../components/ListHeading";
 
 export default function CategoryPage() {
   const router = useRouter();
@@ -38,6 +40,9 @@ export default function CategoryPage() {
         <Placeholder />
       </Header>
       <hr />
+      <ListHeading>Subcategories</ListHeading>
+      <SubcategoriesList />
+      <ListHeading>Entries</ListHeading>
       <EntriesList />
       <DeleteButton
         handleDelete={handleDeleteCategory}

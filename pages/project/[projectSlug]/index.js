@@ -7,6 +7,7 @@ import Heading from "../../../components/Heading";
 import StyledButton from "../../../components/Button";
 import CategoriesList from "../../../components/CategoriesList";
 import DeleteButton from "../../../components/DeleteButton";
+import ListHeading from "../../../components/ListHeading";
 
 export default function ProjectPage() {
   const router = useRouter();
@@ -38,6 +39,7 @@ export default function ProjectPage() {
         <Placeholder></Placeholder>
       </Header>
       <hr />
+      <ListHeading>Categories</ListHeading>
       <CategoriesList></CategoriesList>
       <DeleteButton
         handleDelete={handleDeleteProject}

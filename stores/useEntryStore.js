@@ -8,16 +8,8 @@ import { uid } from "uid";
 const entriesList = [
   {
     id: 1,
-    name: "Airships",
-    slug: "airships",
-    pathPrefix: "/entry/",
-    type: "entry",
-    categoryId: 3,
-  },
-  {
-    id: 2,
-    name: "Dark Magic",
-    slug: "dark-magic",
+    name: "Introduction",
+    slug: "introduction",
     pathPrefix: "/entry/",
     type: "entry",
     categoryId: 3,
