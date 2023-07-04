@@ -7,19 +7,11 @@ import { uid } from "uid";
 const articlesList = [
   {
     id: 1,
-    title: "Introduction",
+    title: "Mix of Magic and Technology",
     content:
-      "Dark Magic is one of two sources of magic in this world. Dark magic can use every energy that consists of a dark or negative aura.",
+      "Magic and Technology are closely intertwined to be able to sail along the winds.",
     type: "article",
-    entryId: 2,
-  },
-  {
-    id: 2,
-    title: "Usecases",
-    content:
-      "Dark magic is used everywhere where there is suffering that wants to be turned into something good. But beware, do not try and change the energy you want to use for your magic!",
-    type: "article",
-    entryId: 2,
+    entryId: 1,
   },
 ];
 
