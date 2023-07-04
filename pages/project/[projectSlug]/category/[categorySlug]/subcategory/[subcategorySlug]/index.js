@@ -7,6 +7,7 @@ import Heading from "../../../../../../../components/Heading";
 import StyledButton from "../../../../../../../components/Button";
 import SubentriesList from "../../../../../../../components/SubentriesList";
 import DeleteButton from "../../../../../../../components/DeleteButton";
+import ListHeading from "../../../../../../../components/ListHeading";
 
 export default function SubcategoryPage() {
   const router = useRouter();
@@ -40,6 +41,7 @@ export default function SubcategoryPage() {
         <Placeholder />
       </Header>
       <hr />
+      <ListHeading>Subentries</ListHeading>
       <SubentriesList />
       <DeleteButton
         handleDelete={handleDeleteSubcategory}
