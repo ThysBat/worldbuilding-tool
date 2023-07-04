@@ -1,30 +1,31 @@
 import { useRouter } from "next/router";
 import useStore from "../../../../../hook/useStore";
-import { useCategoryStore } from "../../../../../stores/useCategoryStore";
+import { useSubcategoryStore } from "../../../../../stores/useSubcategoryStore";
 
 import styled from "styled-components";
 import Heading from "../../../../../components/Heading";
 import StyledButton from "../../../../../components/Button";
-import SubcategoriesList from "../../../../../components/SubcategoriesList";
 import EntriesList from "../../../../../components/EntriesList";
 import DeleteButton from "../../../../../components/DeleteButton";
 
-export default function CategoryPage() {
+export default function SubcategoryPage() {
   const router = useRouter();
-  const { categorySlug: slug, id } = router.query;
+  const { subcategorySlug: slug, id } = router.query;
 
-  const categoryStore = useStore(useCategoryStore, (state) => state);
+  const subcategoryStore = useStore(useSubcategoryStore, (state) => state);
 
-  if (!slug || !categoryStore) return <div>Loading...</div>;
+  if (!slug || !subcategoryStore) return <div>Loading...</div>;
 
-  const { categories, deleteCategory } = categoryStore;
+  const { subcategories, deleteSubcategory } = subcategoryStore;
 
-  const category = categories.find((category) => category.slug === slug);
+  const subcategory = subcategories.find(
+    (subcategory) => subcategory.slug === slug
+  );
 
-  if (!category) return <div>No Data Found</div>;
+  if (!subcategory) return <div>No Data Found</div>;
 
-  function handleDeleteCategory() {
-    deleteCategory(id);
+  function handleDeleteSubcategory() {
+    deleteSubcategory(id);
     router.back();
   }
 
@@ -39,10 +40,9 @@ export default function CategoryPage() {
         <Placeholder />
       </Header>
       <hr />
-      <SubcategoriesList />
       <EntriesList />
       <DeleteButton
-        handleDelete={handleDeleteCategory}
+        handleDelete={handleDeleteSubcategory}
         itemType={category.type}
         itemName={category.name}
       >
