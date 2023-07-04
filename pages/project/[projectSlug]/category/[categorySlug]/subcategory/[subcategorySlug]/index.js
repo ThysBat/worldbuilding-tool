@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
-import useStore from "../../../../../hook/useStore";
-import { useSubcategoryStore } from "../../../../../stores/useSubcategoryStore";
+import useStore from "../../../../../../../hook/useStore";
+import { useSubcategoryStore } from "../../../../../../../stores/useSubcategoryStore";
 
 import styled from "styled-components";
-import Heading from "../../../../../components/Heading";
-import StyledButton from "../../../../../components/Button";
-import EntriesList from "../../../../../components/EntriesList";
-import DeleteButton from "../../../../../components/DeleteButton";
+import Heading from "../../../../../../../components/Heading";
+import StyledButton from "../../../../../../../components/Button";
+import SubentriesList from "../../../../../../../components/SubentriesList";
+import DeleteButton from "../../../../../../../components/DeleteButton";
 
 export default function SubcategoryPage() {
   const router = useRouter();
@@ -36,17 +36,17 @@ export default function SubcategoryPage() {
           {/* use a svg for the back button when it comes to styling */}
           <Button onClick={() => router.back()}>{"<"}</Button>
         </ButtonContainer>
-        <Heading>{category.name}</Heading>
+        <Heading>{subcategory.name}</Heading>
         <Placeholder />
       </Header>
       <hr />
-      <EntriesList />
+      <SubentriesList />
       <DeleteButton
         handleDelete={handleDeleteSubcategory}
-        itemType={category.type}
-        itemName={category.name}
+        itemType={subcategory.type}
+        itemName={subcategory.name}
       >
-        {`Delete '${category.name}'`}
+        {`Delete '${subcategory.name}'`}
       </DeleteButton>
     </>
   );

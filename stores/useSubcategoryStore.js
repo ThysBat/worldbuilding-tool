@@ -55,8 +55,8 @@ function createNewSubcategory(subcategoryName, categoryId) {
     id: uid(),
     name: subcategoryName,
     slug: slug,
-    pathPrefix: "/category/",
-    type: "category",
+    pathPrefix: "/subcategory/",
+    type: "subcategory",
     categoryId,
   };
 }
