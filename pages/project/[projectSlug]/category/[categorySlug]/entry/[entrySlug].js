@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import useStore from "../../../../../../hook/useStore";
 import { useEntryStore } from "../../../../../../stores/useEntryStore";
 import { useArticleStore } from "../../../../../../stores/useArticleStore";
+import { useState } from "react";
 
 import styled from "styled-components";
 import Heading from "../../../../../../components/Heading";
@@ -9,7 +10,7 @@ import Button from "../../../../../../components/Button";
 import Card from "../../../../../../components/Card";
 import ArticleCard from "../../../../../../components/ArticleCard";
 import { StyledList } from "../../../../../../components/List";
-import { useState } from "react";
+import DeleteButton from "../../../../../../components/DeleteButton";
 
 export default function EntryPage() {
   const router = useRouter();
@@ -22,10 +23,17 @@ export default function EntryPage() {
 
   if (!entryStore || !articleStore || !slug) return <div>Loading...</div>;
 
-  const { createNewArticle, addArticle, getArticlesByEntryId, updateArticle } =
-    articleStore;
-  const { getEntryById, updateEntry } = entryStore;
+  const {
+    createNewArticle,
+    addArticle,
+    getArticlesByEntryId,
+    updateArticle,
+    deleteArticle,
+  } = articleStore;
+  const { getEntryById, updateEntry, deleteEntry } = entryStore;
   const entry = getEntryById(id);
+
+  if (!entry) return <div>Loading...</div>;
 
   const articles = getArticlesByEntryId(entry.id);
 
@@ -52,6 +60,11 @@ export default function EntryPage() {
     }
   }
 
+  function handleDeleteEntry() {
+    deleteEntry(id);
+    router.back();
+  }
+
   return (
     <>
       <Header>
@@ -65,7 +78,9 @@ export default function EntryPage() {
           <>
             <Heading>{entry.name}</Heading>
             <EditButton onClick={toggleEditEntryName}>
-              <span role="img">🖊️</span>
+              <span aria-label="edit" role="img">
+                🖊️
+              </span>
             </EditButton>
           </>
         ) : (
@@ -76,7 +91,9 @@ export default function EntryPage() {
               onChange={(event) => setEntryName(event.target.value)}
             />
             <StyledInputButton type="button" onClick={handleUpdateEntryName}>
-              <span role="img">✔️</span>
+              <span aria-label="save entry title" role="img">
+                ✔️
+              </span>
             </StyledInputButton>
           </>
         )}
@@ -89,11 +106,22 @@ export default function EntryPage() {
         {articles.map((article) => {
           return (
             <li key={article.id}>
-              <ArticleCard article={article} handleUpdate={updateArticle} />
+              <ArticleCard
+                article={article}
+                handleUpdate={updateArticle}
+                handleDeleteArticle={deleteArticle}
+              />
             </li>
           );
         })}
       </StyledList>
+      <DeleteButton
+        handleDelete={handleDeleteEntry}
+        itemType={entry.type}
+        itemName={entry.name}
+      >
+        {`Delete '${entry.name}'`}
+      </DeleteButton>
     </>
   );
 }
@@ -133,16 +161,6 @@ const StyledCard = styled(Card)`
   border-radius: inherit;
 `;
 
-const InputWrapper = styled(Card)`
-  width: 100%;
-  height: ${({ styles }) =>
-    styles === "column" ? "var(--card-size-s)" : "var(--card-size-m)"};
-  border-radius: ${({ styles }) =>
-    styles === "column" ? "var(--border-radius-s)" : "var(--border-radius-m)"};
-
-  background-color: unset;
-`;
-
 const StyledInputButton = styled(Button)`
   width: 10%;
   margin: 1rem;
@@ -151,7 +169,7 @@ const StyledInputButton = styled(Button)`
 `;
 
 const StyledEntryNameInput = styled.input`
-  margin: 0;
+  margin: 1rem 0;
   padding: 0;
 
   width: 70%;
@@ -163,12 +181,6 @@ const StyledEntryNameInput = styled.input`
 
   border: none;
   border-radius: var(--border-radius-s);
-
-  font-size: 2em;
-  margin: 1rem 0;
-  margin-left: 0;
-  margin-right: 0;
-  font-weight: bold;
 
   &:focus {
     outline: none;

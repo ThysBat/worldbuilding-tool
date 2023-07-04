@@ -11,6 +11,7 @@ const entriesList = [
     name: "Airships",
     slug: "airships",
     pathPrefix: "/entry/",
+    type: "entry",
     categoryId: 3,
   },
   {
@@ -18,6 +19,7 @@ const entriesList = [
     name: "Dark Magic",
     slug: "dark-magic",
     pathPrefix: "/entry/",
+    type: "entry",
     categoryId: 3,
   },
 ];
@@ -30,6 +32,7 @@ function createNewEntry(entryName, categoryId) {
     name: entryName,
     slug: slug,
     pathPrefix: "/entry/",
+    type: "entry",
     categoryId,
   };
 }
@@ -57,6 +60,12 @@ export const useEntryStore = create(
           const index = state.entries.findIndex((entry) => entry.id == id);
           state.entries[index].name = name;
           state.entries[index].slug = slugify(name, { lower: true });
+        });
+      },
+      deleteEntry: (id) => {
+        set((state) => {
+          const index = state.entries.findIndex((entry) => entry.id == id);
+          state.entries.splice(index, 1);
         });
       },
     })),

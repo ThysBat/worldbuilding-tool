@@ -31,7 +31,9 @@ export default function AddInputButton({ handleSave, styles = "row" }) {
       {inputState ? (
         <InputWrapper styles={styles}>
           <StyledButton type="button" onClick={toggleNewProjectInput}>
-            <span role="img">❌</span>
+            <span aria-label="close" role="img">
+              ❌
+            </span>
           </StyledButton>
           <StyledInput
             ref={ref}
@@ -40,7 +42,9 @@ export default function AddInputButton({ handleSave, styles = "row" }) {
             onChange={(event) => setInputValue(event.target.value)}
           />
           <StyledButton type="button" onClick={onClickSave}>
-            <span role="img">✔️</span>
+            <span aria-label="save" role="img">
+              ✔️
+            </span>
           </StyledButton>
         </InputWrapper>
       ) : (

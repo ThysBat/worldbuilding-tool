@@ -6,19 +6,26 @@ import styled from "styled-components";
 import Heading from "../../../components/Heading";
 import StyledButton from "../../../components/Button";
 import CategoriesList from "../../../components/CategoriesList";
+import DeleteButton from "../../../components/DeleteButton";
 
 export default function ProjectPage() {
   const router = useRouter();
-  const { projectSlug: slug } = router.query;
+  const { projectSlug: slug, id } = router.query;
 
-  const projects = useStore(useProjectStore, (state) => state.projects);
+  const projectStore = useStore(useProjectStore, (state) => state);
 
-  if (!projects) return <div>Loading...</div>;
-  if (!slug) return <p>Loading...</p>;
+  if (!slug || !projectStore) return <div>Loading...</div>;
+
+  const { projects, deleteProject } = projectStore;
 
   const project = projects.find((project) => project.slug === slug);
 
   if (!project) return <div>No Data Found</div>;
+
+  function handleDeleteProject() {
+    deleteProject(id);
+    router.back();
+  }
 
   return (
     <>
@@ -32,6 +39,13 @@ export default function ProjectPage() {
       </Header>
       <hr />
       <CategoriesList></CategoriesList>
+      <DeleteButton
+        handleDelete={handleDeleteProject}
+        itemType={project.type}
+        itemName={project.name}
+      >
+        {`Delete '${project.name}'`}
+      </DeleteButton>
     </>
   );
 }

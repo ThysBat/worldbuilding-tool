@@ -6,19 +6,26 @@ import styled from "styled-components";
 import Heading from "../../../../../components/Heading";
 import StyledButton from "../../../../../components/Button";
 import EntriesList from "../../../../../components/EntriesList";
+import DeleteButton from "../../../../../components/DeleteButton";
 
 export default function CategoryPage() {
   const router = useRouter();
-  const { categorySlug: slug } = router.query;
+  const { categorySlug: slug, id } = router.query;
 
-  const categories = useStore(useCategoryStore, (state) => state.categories);
+  const categoryStore = useStore(useCategoryStore, (state) => state);
 
-  if (!categories) return <div>Loading categories...</div>;
-  if (!slug) return <p>Loading slug...</p>;
+  if (!slug || !categoryStore) return <div>Loading...</div>;
+
+  const { categories, deleteCategory } = categoryStore;
 
   const category = categories.find((category) => category.slug === slug);
 
   if (!category) return <div>No Data Found</div>;
+
+  function handleDeleteCategory() {
+    deleteCategory(id);
+    router.back();
+  }
 
   return (
     <>
@@ -28,10 +35,17 @@ export default function CategoryPage() {
           <Button onClick={() => router.back()}>{"<"}</Button>
         </ButtonContainer>
         <Heading>{category.name}</Heading>
-        <Placeholder></Placeholder>
+        <Placeholder />
       </Header>
       <hr />
       <EntriesList />
+      <DeleteButton
+        handleDelete={handleDeleteCategory}
+        itemType={category.type}
+        itemName={category.name}
+      >
+        {`Delete '${category.name}'`}
+      </DeleteButton>
     </>
   );
 }
