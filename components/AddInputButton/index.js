@@ -91,13 +91,17 @@ const StyledButton = styled(Button)`
 const StyledInput = styled.input`
   width: 70%;
   padding: 1rem;
-  opacity: 30%;
+  background-color: var(--surface-container-high);
 
   border: none;
   border-radius: var(--border-radius-s);
 
+  &:hover {
+    background-color: var(--surface-container-lowest);
+  }
+
   &:focus {
     outline: none;
-    opacity: 40%;
+    background-color: var(--surface-container-low);
   }
 `;

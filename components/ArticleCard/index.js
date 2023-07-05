@@ -56,26 +56,33 @@ export default function ArticleCard({
 
 const Article = styled(Card)`
   flex-direction: column;
+  align-items: flex-end;
+
   gap: var(--gap-xs);
   padding: var(--padding-s) var(--padding-s) var(--padding-xs);
+
   width: 100%;
   height: unset;
+
   border-radius: var(--border-radius-s);
-  align-items: flex-end;
+
+  background-color: var(--primary-40);
 `;
 
 const StyledInput = styled.input`
   width: inherit;
   padding: 1rem;
-  opacity: 30%;
+  background-color: var(--primary-40);
 
   border: none;
   border-radius: var(--border-radius-s);
 
   resize: none;
 
+  background-color: var(--primary-40);
+
   &:focus {
     outline: none;
-    opacity: 40%;
+    background-color: var(--primary-20);
   }
 `;

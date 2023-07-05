@@ -41,7 +41,7 @@ const Button = styled.button`
   ${({ variant }) =>
     variant === "default" &&
     css`
-      background-color: var(--color-danger);
+      background-color: var(--error);
       padding: 0.25rem;
       margin-top: 0.8rem;
       margin-left: var(--margin-s);
