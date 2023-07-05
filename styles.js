@@ -9,6 +9,7 @@ export default createGlobalStyle`
     --border-radius-s: 0.6rem;
     --border-radius-m: 1.6rem;
 
+    /* Spacing */
     --gap-xs: 0.18rem;
     --gap-s: 0.5rem;
     --gap-m: 1rem;
@@ -20,8 +21,8 @@ export default createGlobalStyle`
     --margin-xs: 0.25rem;
     --margin-s: 0.5rem;
     --margin-m: 1rem;
-
     
+    /* Colors */
     --color-primary-raw: 221, 209, 197;
     --color-secondary-raw: 44, 54, 76;
     --color-primary-accent-raw: 157, 105, 90;
