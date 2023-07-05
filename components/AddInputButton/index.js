@@ -50,7 +50,9 @@ export default function AddInputButton({ handleSave, styles = "row" }) {
       ) : (
         <Button type="button" onClick={toggleNewProjectInput}>
           <StyledCard width={inputWidth} styles={styles}>
-            {"➕"}
+            <span aria-label="add" role="img">
+              ➕
+            </span>
           </StyledCard>
         </Button>
       )}
