@@ -15,14 +15,14 @@ export default function List({ children, listItems = [], listStyles = "row" }) {
       {listItems.map((item) => {
         return (
           <li key={item.id}>
-            <Link
+            <StyledLink
               href={{
                 pathname: path + item.pathPrefix + item.slug,
                 query: { id: item.id },
               }}
             >
               <StyledCard listStyles={listStyles}>{item.name}</StyledCard>
-            </Link>
+            </StyledLink>
           </li>
         );
       })}
@@ -59,4 +59,9 @@ export const StyledList = styled.ul`
 
   text-align: center;
   list-style: none;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
 `;

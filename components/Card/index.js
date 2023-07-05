@@ -8,7 +8,8 @@ const Card = styled.div`
   width: var(--card-size-m);
   height: var(--card-size-m);
 
-  background-color: lightblue;
+  background-color: var(--color-primary-400);
+  color: var(--text-color);
 
   border-radius: 1.6rem;
   padding: 2px;
