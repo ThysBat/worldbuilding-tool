@@ -66,6 +66,7 @@ const StyledCard = styled(Card)`
     styles === "column" ? "var(--card-size-s)" : "var(--card-size-m)"};
   border-radius: ${({ styles }) =>
     styles === "column" ? "var(--border-radius-s)" : "var(--border-radius-m)"};
+  background-color: var(--primary);
 `;
 
 const InputButtonContainer = styled.div`
@@ -81,6 +82,7 @@ const InputWrapper = styled(Card)`
     styles === "column" ? "var(--card-size-s)" : "var(--card-size-m)"};
   border-radius: ${({ styles }) =>
     styles === "column" ? "var(--border-radius-s)" : "var(--border-radius-m)"};
+  background-color: var(--primary);
 `;
 
 const StyledButton = styled(Button)`
@@ -91,17 +93,12 @@ const StyledButton = styled(Button)`
 const StyledInput = styled.input`
   width: 70%;
   padding: 1rem;
-  background-color: var(--surface-container-high);
+  background-color: var(--surface);
 
   border: none;
   border-radius: var(--border-radius-s);
 
-  &:hover {
-    background-color: var(--surface-container-lowest);
-  }
-
   &:focus {
     outline: none;
-    background-color: var(--surface-container-low);
   }
 `;

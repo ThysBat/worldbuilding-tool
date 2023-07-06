@@ -23,7 +23,8 @@ export default createGlobalStyle`
     --margin-m: 1rem;
     
     /* Colors */
-    --primary: #275dac;
+    --primary: #4576c6; // tone: 50
+    /* --primary: #275dac; // primary base color (tone: 40)*/
     --on-primary: #ffffff;
     --primary-container: #d7e2ff;
     --on-primary-container: #001b3f;

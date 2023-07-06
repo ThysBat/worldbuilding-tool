@@ -128,6 +128,7 @@ export default function SubentryPage() {
 
 const Header = styled.header`
   display: flex;
+  background-color: var(--surface-container-low);
 `;
 
 const ButtonContainer = styled.div`
@@ -159,6 +160,9 @@ const StyledCard = styled(Card)`
   width: inherit;
   height: inherit;
   border-radius: inherit;
+
+  background-color: var(--surface-container-highest);
+  color: var(--on-surface-container);
 `;
 
 const StyledInputButton = styled(Button)`

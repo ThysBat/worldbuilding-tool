@@ -8,8 +8,8 @@ const Card = styled.div`
   width: var(--card-size-m);
   height: var(--card-size-m);
 
-  background-color: var(--surface-container-high);
-  color: var(--on-surface);
+  background-color: var(--primary-container);
+  color: var(--on-primary-container);
 
   border-radius: 1.6rem;
   padding: 2px;

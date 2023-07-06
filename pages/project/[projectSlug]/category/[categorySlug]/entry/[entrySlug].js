@@ -128,6 +128,7 @@ export default function EntryPage() {
 
 const Header = styled.header`
   display: flex;
+  background-color: var(--surface-container-low);
 `;
 
 const ButtonContainer = styled.div`
@@ -145,7 +146,7 @@ const EditButton = styled(Button)`
   flex: 1;
 `;
 
-const paddingGroup = "var(--padding-s)";
+const paddingGroup = "var(--padding-m)";
 
 const AddArticleButton = styled(Button)`
   width: calc(100vw - calc(2 * ${paddingGroup}));
@@ -159,6 +160,9 @@ const StyledCard = styled(Card)`
   width: inherit;
   height: inherit;
   border-radius: inherit;
+
+  background-color: var(--surface-container-highest);
+  color: var(--on-surface-container);
 `;
 
 const StyledInputButton = styled(Button)`

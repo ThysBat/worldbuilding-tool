@@ -54,6 +54,7 @@ export default function ProjectPage() {
 
 const Header = styled.header`
   display: flex;
+  background-color: var(--surface-container-low);
 `;
 
 const ButtonContainer = styled.div`

@@ -41,8 +41,9 @@ const Button = styled.button`
   ${({ variant }) =>
     variant === "default" &&
     css`
-      background-color: var(--error);
-      padding: 0.25rem;
+      background-color: var(--error-container);
+      color: var(--on-error-container);
+      padding: 0.35rem;
       margin-top: 0.8rem;
       margin-left: var(--margin-s);
     `}
@@ -51,6 +52,7 @@ const Button = styled.button`
     variant === "transparent" &&
     css`
       background-color: transparent;
-      opacity: 40%;
+      color: var(--on-surface);
+      opacity: 60%;
     `}
 `;

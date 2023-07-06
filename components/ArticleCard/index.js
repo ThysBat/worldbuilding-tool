@@ -66,23 +66,23 @@ const Article = styled(Card)`
 
   border-radius: var(--border-radius-s);
 
-  background-color: var(--primary-40);
+  background-color: var(--surface-container-high);
 `;
 
 const StyledInput = styled.input`
   width: inherit;
   padding: 1rem;
-  background-color: var(--primary-40);
 
   border: none;
   border-radius: var(--border-radius-s);
 
   resize: none;
 
-  background-color: var(--primary-40);
+  background-color: var(--surface-container);
+  color: var(--on-surface);
 
   &:focus {
     outline: none;
-    background-color: var(--primary-20);
+    background-color: var(--surface-container-low);
   }
 `;
