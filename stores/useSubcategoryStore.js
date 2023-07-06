@@ -71,13 +71,21 @@ export const useSubcategoryStore = create(
   persist(
     immer((set, get) => ({
       subcategories: subcategoriesList,
+      getSubcategoriesByCategoryId: (categoryId) =>
+        handleGetSubcategoriesByCategoryId(categoryId, get().subcategories),
       createNewSubcategory,
       addSubcategory: (newSubcategory) =>
         set((state) => {
           state.subcategories.push(newSubcategory);
         }),
-      getSubcategoriesByCategoryId: (categoryId) =>
-        handleGetSubcategoriesByCategoryId(categoryId, get().subcategories),
+      updateSubcategory: (id, key, value) => {
+        set((state) => {
+          const index = state.subcategories.findIndex(
+            (subcategory) => subcategory.id == id
+          );
+          state.subcategories[index][key] = value;
+        });
+      },
       deleteSubcategory: (id) => {
         set((state) => {
           const index = state.subcategories.findIndex(

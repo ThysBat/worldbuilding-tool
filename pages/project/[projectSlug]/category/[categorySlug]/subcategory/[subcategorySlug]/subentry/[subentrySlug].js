@@ -2,10 +2,9 @@ import { useRouter } from "next/router";
 import useStore from "../../../../../../../../hook/useStore";
 import { useSubentryStore } from "../../../../../../../../stores/useSubentryStore";
 import { useSubarticleStore } from "../../../../../../../../stores/useSubarticleStore";
-import { useState } from "react";
 
 import styled from "styled-components";
-import Heading from "../../../../../../../../components/Heading";
+import HeaderEditable from "../../../../../../../../components/HeaderEditable";
 import Button from "../../../../../../../../components/Button";
 import Card from "../../../../../../../../components/Card";
 import ArticleCard from "../../../../../../../../components/ArticleCard";
@@ -17,8 +16,6 @@ import DeleteButton, {
 export default function SubentryPage() {
   const router = useRouter();
   const { subentrySlug: slug, id } = router.query;
-  const [subentryName, setSubentryName] = useState("");
-  const [editSubentryNameState, setEditSubentryNameState] = useState(false);
 
   const subarticleStore = useStore(useSubarticleStore, (state) => state);
   const subentryStore = useStore(useSubentryStore, (state) => state);
@@ -44,22 +41,8 @@ export default function SubentryPage() {
     addSubarticle(newSubarticle);
   }
 
-  function handleUpdateSubentryName() {
-    updateSubentry(id, subentryName);
-    toggleEditSubentryName();
-  }
-
-  function toggleEditSubentryName() {
-    setSubentryName(subentry.name);
-    setEditSubentryNameState(!editSubentryNameState);
-  }
-
-  function handleBackButton() {
-    if (editSubentryNameState) {
-      setEditSubentryNameState(!editSubentryNameState);
-    } else {
-      router.back();
-    }
+  function handleSaveSubentryName(newName) {
+    updateSubentry(subentry.id, newName);
   }
 
   function handleDeleteSubentry() {
@@ -69,37 +52,9 @@ export default function SubentryPage() {
 
   return (
     <>
-      <Header>
-        <ButtonContainer>
-          {/* use a svg for the back button when it comes to styling */}
-          <StyledButton type="button" onClick={handleBackButton}>
-            {"<"}
-          </StyledButton>
-        </ButtonContainer>
-        {!editSubentryNameState ? (
-          <>
-            <Heading>{subentry.name}</Heading>
-            <EditButton onClick={toggleEditSubentryName}>
-              <span aria-label="edit" role="img">
-                🖊️
-              </span>
-            </EditButton>
-          </>
-        ) : (
-          <>
-            <StyledEntryNameInput
-              type="text"
-              value={subentryName}
-              onChange={(event) => setSubentryName(event.target.value)}
-            />
-            <StyledInputButton type="button" onClick={handleUpdateSubentryName}>
-              <span aria-label="save entry title" role="img">
-                ✔️
-              </span>
-            </StyledInputButton>
-          </>
-        )}
-      </Header>
+      <HeaderEditable onSave={handleSaveSubentryName}>
+        {subentry.name}
+      </HeaderEditable>
       <hr />
       <AddArticleButton type="button" onClick={handleAddSubarticle}>
         <StyledCard>Add Article</StyledCard>
@@ -130,26 +85,6 @@ export default function SubentryPage() {
   );
 }
 
-const Header = styled.header`
-  display: flex;
-  background-color: var(--surface-container-low);
-`;
-
-const ButtonContainer = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const StyledButton = styled(Button)`
-  font-size: 2rem;
-`;
-
-const EditButton = styled(Button)`
-  flex: 1;
-`;
-
 const paddingGroup = "var(--margin-m)";
 
 const AddArticleButton = styled(Button)`
@@ -167,31 +102,4 @@ const StyledCard = styled(Card)`
 
   background-color: var(--surface-container-highest);
   color: var(--on-surface-container);
-`;
-
-const StyledInputButton = styled(Button)`
-  width: 10%;
-  margin: 1rem;
-  font-size: 1.2rem;
-  flex: 1;
-`;
-
-const StyledEntryNameInput = styled.input`
-  margin: 1rem 0;
-  padding: 0;
-
-  width: 70%;
-  opacity: 30%;
-
-  font-size: 2em;
-  font-weight: bold;
-  text-align: center;
-
-  border: none;
-  border-radius: var(--border-radius-s);
-
-  &:focus {
-    outline: none;
-    opacity: 40%;
-  }
 `;

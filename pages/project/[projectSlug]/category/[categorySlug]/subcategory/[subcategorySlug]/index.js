@@ -2,9 +2,7 @@ import { useRouter } from "next/router";
 import useStore from "../../../../../../../hook/useStore";
 import { useSubcategoryStore } from "../../../../../../../stores/useSubcategoryStore";
 
-import styled from "styled-components";
-import Heading from "../../../../../../../components/Heading";
-import StyledButton from "../../../../../../../components/Button";
+import Header from "../../../../../../../components/HeaderEditable";
 import SubentriesList from "../../../../../../../components/SubentriesList";
 import DeleteButton, {
   ButtonOnBottomContainer,
@@ -19,13 +17,18 @@ export default function SubcategoryPage() {
 
   if (!slug || !subcategoryStore) return <div>Loading...</div>;
 
-  const { subcategories, deleteSubcategory } = subcategoryStore;
+  const { subcategories, deleteSubcategory, updateSubcategory } =
+    subcategoryStore;
 
   const subcategory = subcategories.find(
     (subcategory) => subcategory.slug === slug
   );
 
   if (!subcategory) return <div>No Data Found</div>;
+
+  function handleSaveSubcategoryName(newName) {
+    updateSubcategory(subcategory.id, "name", newName);
+  }
 
   function handleDeleteSubcategory() {
     deleteSubcategory(id);
@@ -34,14 +37,7 @@ export default function SubcategoryPage() {
 
   return (
     <>
-      <Header>
-        <ButtonContainer>
-          {/* use a svg for the back button when it comes to styling */}
-          <Button onClick={() => router.back()}>{"<"}</Button>
-        </ButtonContainer>
-        <Heading>{subcategory.name}</Heading>
-        <Placeholder />
-      </Header>
+      <Header onSave={handleSaveSubcategoryName}>{subcategory.name}</Header>
       <hr />
       <ListHeading>Subentries</ListHeading>
       <SubentriesList />
@@ -57,23 +53,3 @@ export default function SubcategoryPage() {
     </>
   );
 }
-
-const Header = styled.header`
-  display: flex;
-  background-color: var(--surface-container-low);
-`;
-
-const ButtonContainer = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Button = styled(StyledButton)`
-  font-size: 2rem;
-`;
-
-const Placeholder = styled.div`
-  flex: 1;
-`;

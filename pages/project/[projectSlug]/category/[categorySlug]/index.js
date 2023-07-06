@@ -2,9 +2,7 @@ import { useRouter } from "next/router";
 import useStore from "../../../../../hook/useStore";
 import { useCategoryStore } from "../../../../../stores/useCategoryStore";
 
-import styled from "styled-components";
-import Heading from "../../../../../components/Heading";
-import StyledButton from "../../../../../components/Button";
+import Header from "../../../../../components/HeaderEditable";
 import SubcategoriesList from "../../../../../components/SubcategoriesList";
 import EntriesList from "../../../../../components/EntriesList";
 import DeleteButton, {
@@ -20,11 +18,15 @@ export default function CategoryPage() {
 
   if (!slug || !categoryStore) return <div>Loading...</div>;
 
-  const { categories, deleteCategory } = categoryStore;
+  const { categories, deleteCategory, updateCategory } = categoryStore;
 
   const category = categories.find((category) => category.slug === slug);
 
   if (!category) return <div>No Data Found</div>;
+
+  function handleSaveCategoryName(newName) {
+    updateCategory(category.id, "name", newName);
+  }
 
   function handleDeleteCategory() {
     deleteCategory(id);
@@ -33,14 +35,7 @@ export default function CategoryPage() {
 
   return (
     <>
-      <Header>
-        <ButtonContainer>
-          {/* use a svg for the back button when it comes to styling */}
-          <Button onClick={() => router.back()}>{"<"}</Button>
-        </ButtonContainer>
-        <Heading>{category.name}</Heading>
-        <Placeholder />
-      </Header>
+      <Header onSave={handleSaveCategoryName}>{category.name}</Header>
       <hr />
       <ListHeading>Subcategories</ListHeading>
       <SubcategoriesList />
@@ -58,23 +53,3 @@ export default function CategoryPage() {
     </>
   );
 }
-
-const Header = styled.header`
-  display: flex;
-  background-color: var(--surface-container-low);
-`;
-
-const ButtonContainer = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Button = styled(StyledButton)`
-  font-size: 2rem;
-`;
-
-const Placeholder = styled.div`
-  flex: 1;
-`;

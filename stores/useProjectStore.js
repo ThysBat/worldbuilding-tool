@@ -57,6 +57,12 @@ export const useProjectStore = create(
         set((state) => {
           state.projects.push(newProject);
         }),
+      updateProject: (id, key, value) => {
+        set((state) => {
+          const index = state.projects.findIndex((project) => project.id == id);
+          state.projects[index][key] = value;
+        });
+      },
       deleteProject: (id) => {
         set((state) => {
           const index = state.projects.findIndex((project) => project.id == id);
