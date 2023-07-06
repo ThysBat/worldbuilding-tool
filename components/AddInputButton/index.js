@@ -2,6 +2,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useRef } from "react";
 
+import { AddIcon, CancelIcon, CheckIcon } from "../../assets/icons";
+
 import Card from "../Card";
 import Button from "../Button";
 
@@ -26,33 +28,42 @@ export default function AddInputButton({ handleSave, styles = "row" }) {
       setInputWidth(!inputState ? "100%" : "var(--card-size-m)");
   }
 
+  const iconSize = "38";
+
   return (
     <InputButtonContainer width={inputWidth} styles={styles}>
       {inputState ? (
         <InputWrapper styles={styles}>
           <StyledButton type="button" onClick={toggleNewProjectInput}>
-            <span aria-label="close" role="img">
-              ❌
-            </span>
+            <CancelIcon
+              fill="var(--on-primary)"
+              height={iconSize}
+              width={iconSize}
+            />
           </StyledButton>
           <StyledInput
             ref={ref}
             type="text"
+            styles={styles}
             value={inputValue}
             onChange={(event) => setInputValue(event.target.value)}
           />
           <StyledButton type="button" onClick={onClickSave}>
-            <span aria-label="save" role="img">
-              ✔️
-            </span>
+            <CheckIcon
+              fill="var(--on-primary)"
+              height={iconSize}
+              width={iconSize}
+            />
           </StyledButton>
         </InputWrapper>
       ) : (
         <Button type="button" onClick={toggleNewProjectInput}>
           <StyledCard width={inputWidth} styles={styles}>
-            <span aria-label="add" role="img">
-              ➕
-            </span>
+            <AddIcon
+              fill="var(--on-primary)"
+              height={iconSize}
+              width={iconSize}
+            />
           </StyledCard>
         </Button>
       )}
@@ -86,13 +97,13 @@ const InputWrapper = styled(Card)`
 `;
 
 const StyledButton = styled(Button)`
-  width: 10%;
-  margin: 1rem;
+  margin: var(--margin-s);
+  flex: 1;
 `;
 
 const StyledInput = styled.input`
-  width: 70%;
-  padding: 1rem;
+  width: 100%;
+  height: ${({ styles }) => (styles === "column" ? "100%" : "3rem")};
 
   background-color: var(--surface-container-low);
   color: var(--on-surface);

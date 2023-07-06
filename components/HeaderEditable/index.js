@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import Button from "../Button";
 
-import BackIcon from "../../assets/icons/chevron_left.svg";
-import EditIcon from "../../assets/icons/edit.svg";
-import CheckIcon from "../../assets/icons/check.svg";
+// import BackIcon from "../../assets/icons/chevron_left.svg";
+// import EditIcon from "../../assets/icons/edit.svg";
+// import CheckIcon from "../../assets/icons/check.svg";
+
+import { ArrowLeftIcon, EditIcon, CheckIcon } from "../../assets/icons";
 
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
@@ -35,13 +37,8 @@ export default function HeaderEditable({ children, onSave }) {
 
   return (
     <Header>
-      {/* <ButtonContainer>
-        <StyledButton type="button" onClick={handleOnBack}>
-          <Image src={BackIcon} alt="back icon" />
-        </StyledButton>
-      </ButtonContainer> */}
       <StyledInputButton type="button" onClick={handleOnBack}>
-        <Image src={BackIcon} alt="back icon" />
+        <ArrowLeftIcon fill="var(--on-surface)" />
       </StyledInputButton>
       <Title
         ref={ref}
@@ -52,11 +49,11 @@ export default function HeaderEditable({ children, onSave }) {
       />
       {onEdit ? (
         <StyledInputButton type="button" onClick={handleOnSave}>
-          <Image src={CheckIcon} alt="check icon" height="42" />
+          <CheckIcon fill="var(--on-surface)" />
         </StyledInputButton>
       ) : (
         <StyledInputButton type="button" onClick={() => setOnEdit(true)}>
-          <Image src={EditIcon} alt="edit icon" height="42" />
+          <EditIcon fill="var(--on-surface)" height="32" />
         </StyledInputButton>
       )}
     </Header>
@@ -69,9 +66,6 @@ const Header = styled.header`
 `;
 
 const StyledInputButton = styled(Button)`
-  /* flex: 1;
-  width: 10%;
-  margin: 1rem; */
   flex: 1;
 `;
 
