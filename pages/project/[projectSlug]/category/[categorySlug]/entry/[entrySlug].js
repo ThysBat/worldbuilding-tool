@@ -146,7 +146,7 @@ const EditButton = styled(Button)`
   flex: 1;
 `;
 
-const paddingGroup = "var(--padding-m)";
+const paddingGroup = "var(--margin-m)";
 
 const AddArticleButton = styled(Button)`
   width: calc(100vw - calc(2 * ${paddingGroup}));

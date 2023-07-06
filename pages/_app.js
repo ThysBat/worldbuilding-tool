@@ -1,4 +1,5 @@
 import GlobalStyle from "../styles";
+import styled from "styled-components";
 import Head from "next/head";
 import { Inter } from "next/font/google";
 
@@ -8,12 +9,18 @@ const inter = Inter({
 
 export default function App({ Component, pageProps }) {
   return (
-    <main className={inter.className}>
+    <Main className={inter.className}>
       <GlobalStyle />
       <Head>
         <title>Capstone Project</title>
       </Head>
       <Component {...pageProps} />
-    </main>
+    </Main>
   );
 }
+
+const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`;

@@ -115,16 +115,26 @@ export default function SubentryPage() {
           );
         })}
       </StyledList>
-      <DeleteButton
-        handleDelete={handleDeleteSubentry}
-        itemType={subentry.type}
-        itemName={subentry.name}
-      >
-        {`Delete '${subentry.name}'`}
-      </DeleteButton>
+      <DeleteButtonContainer>
+        <DeleteButton
+          handleDelete={handleDeleteSubentry}
+          itemType={subentry.type}
+          itemName={subentry.name}
+        >
+          {`Delete '${subentry.name}'`}
+        </DeleteButton>
+      </DeleteButtonContainer>
     </>
   );
 }
+
+const DeleteButtonContainer = styled.div`
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+
+  padding-bottom: var(--padding-s);
+`;
 
 const Header = styled.header`
   display: flex;
@@ -146,7 +156,7 @@ const EditButton = styled(Button)`
   flex: 1;
 `;
 
-const paddingGroup = "var(--padding-s)";
+const paddingGroup = "var(--margin-m)";
 
 const AddArticleButton = styled(Button)`
   width: calc(100vw - calc(2 * ${paddingGroup}));

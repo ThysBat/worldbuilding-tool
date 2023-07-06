@@ -44,7 +44,7 @@ const Button = styled.button`
       background-color: var(--error-container);
       color: var(--on-error-container);
       padding: 0.35rem;
-      margin-top: 0.8rem;
+      margin-top: var(--margin-m);
       margin-left: var(--margin-s);
     `}
 
