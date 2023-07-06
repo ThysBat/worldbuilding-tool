@@ -56,3 +56,11 @@ const Button = styled.button`
       opacity: 60%;
     `}
 `;
+
+export const ButtonOnBottomContainer = styled.div`
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+
+  padding-bottom: var(--padding-s);
+`;

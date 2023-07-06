@@ -10,7 +10,9 @@ import Button from "../../../../../../../../components/Button";
 import Card from "../../../../../../../../components/Card";
 import ArticleCard from "../../../../../../../../components/ArticleCard";
 import { StyledList } from "../../../../../../../../components/List";
-import DeleteButton from "../../../../../../../../components/DeleteButton";
+import DeleteButton, {
+  ButtonOnBottomContainer,
+} from "../../../../../../../../components/DeleteButton";
 
 export default function SubentryPage() {
   const router = useRouter();
@@ -115,7 +117,7 @@ export default function SubentryPage() {
           );
         })}
       </StyledList>
-      <DeleteButtonContainer>
+      <ButtonOnBottomContainer>
         <DeleteButton
           handleDelete={handleDeleteSubentry}
           itemType={subentry.type}
@@ -123,18 +125,10 @@ export default function SubentryPage() {
         >
           {`Delete '${subentry.name}'`}
         </DeleteButton>
-      </DeleteButtonContainer>
+      </ButtonOnBottomContainer>
     </>
   );
 }
-
-const DeleteButtonContainer = styled.div`
-  display: flex;
-  height: 100%;
-  align-items: flex-end;
-
-  padding-bottom: var(--padding-s);
-`;
 
 const Header = styled.header`
   display: flex;

@@ -93,12 +93,15 @@ const StyledButton = styled(Button)`
 const StyledInput = styled.input`
   width: 70%;
   padding: 1rem;
-  background-color: var(--surface);
+
+  background-color: var(--surface-container-low);
+  color: var(--on-surface);
 
   border: none;
   border-radius: var(--border-radius-s);
 
   &:focus {
     outline: none;
+    opacity: 88%;
   }
 `;

@@ -10,7 +10,9 @@ import Button from "../../../../../../components/Button";
 import Card from "../../../../../../components/Card";
 import ArticleCard from "../../../../../../components/ArticleCard";
 import { StyledList } from "../../../../../../components/List";
-import DeleteButton from "../../../../../../components/DeleteButton";
+import DeleteButton, {
+  ButtonOnBottomContainer,
+} from "../../../../../../components/DeleteButton";
 
 export default function EntryPage() {
   const router = useRouter();
@@ -115,13 +117,15 @@ export default function EntryPage() {
           );
         })}
       </StyledList>
-      <DeleteButton
-        handleDelete={handleDeleteEntry}
-        itemType={entry.type}
-        itemName={entry.name}
-      >
-        {`Delete '${entry.name}'`}
-      </DeleteButton>
+      <ButtonOnBottomContainer>
+        <DeleteButton
+          handleDelete={handleDeleteEntry}
+          itemType={entry.type}
+          itemName={entry.name}
+        >
+          {`Delete '${entry.name}'`}
+        </DeleteButton>
+      </ButtonOnBottomContainer>
     </>
   );
 }

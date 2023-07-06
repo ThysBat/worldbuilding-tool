@@ -6,7 +6,9 @@ import styled from "styled-components";
 import Heading from "../../../components/Heading";
 import StyledButton from "../../../components/Button";
 import CategoriesList from "../../../components/CategoriesList";
-import DeleteButton from "../../../components/DeleteButton";
+import DeleteButton, {
+  ButtonOnBottomContainer,
+} from "../../../components/DeleteButton";
 import ListHeading from "../../../components/ListHeading";
 
 export default function ProjectPage() {
@@ -41,13 +43,15 @@ export default function ProjectPage() {
       <hr />
       <ListHeading>Categories</ListHeading>
       <CategoriesList></CategoriesList>
-      <DeleteButton
-        handleDelete={handleDeleteProject}
-        itemType={project.type}
-        itemName={project.name}
-      >
-        {`Delete '${project.name}'`}
-      </DeleteButton>
+      <ButtonOnBottomContainer>
+        <DeleteButton
+          handleDelete={handleDeleteProject}
+          itemType={project.type}
+          itemName={project.name}
+        >
+          {`Delete '${project.name}'`}
+        </DeleteButton>
+      </ButtonOnBottomContainer>
     </>
   );
 }

@@ -7,7 +7,9 @@ import Heading from "../../../../../components/Heading";
 import StyledButton from "../../../../../components/Button";
 import SubcategoriesList from "../../../../../components/SubcategoriesList";
 import EntriesList from "../../../../../components/EntriesList";
-import DeleteButton from "../../../../../components/DeleteButton";
+import DeleteButton, {
+  ButtonOnBottomContainer,
+} from "../../../../../components/DeleteButton";
 import ListHeading from "../../../../../components/ListHeading";
 
 export default function CategoryPage() {
@@ -44,13 +46,15 @@ export default function CategoryPage() {
       <SubcategoriesList />
       <ListHeading>Entries</ListHeading>
       <EntriesList />
-      <DeleteButton
-        handleDelete={handleDeleteCategory}
-        itemType={category.type}
-        itemName={category.name}
-      >
-        {`Delete '${category.name}'`}
-      </DeleteButton>
+      <ButtonOnBottomContainer>
+        <DeleteButton
+          handleDelete={handleDeleteCategory}
+          itemType={category.type}
+          itemName={category.name}
+        >
+          {`Delete '${category.name}'`}
+        </DeleteButton>
+      </ButtonOnBottomContainer>
     </>
   );
 }

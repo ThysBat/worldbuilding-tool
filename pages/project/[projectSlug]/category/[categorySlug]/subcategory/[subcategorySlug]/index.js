@@ -6,7 +6,9 @@ import styled from "styled-components";
 import Heading from "../../../../../../../components/Heading";
 import StyledButton from "../../../../../../../components/Button";
 import SubentriesList from "../../../../../../../components/SubentriesList";
-import DeleteButton from "../../../../../../../components/DeleteButton";
+import DeleteButton, {
+  ButtonOnBottomContainer,
+} from "../../../../../../../components/DeleteButton";
 import ListHeading from "../../../../../../../components/ListHeading";
 
 export default function SubcategoryPage() {
@@ -43,13 +45,15 @@ export default function SubcategoryPage() {
       <hr />
       <ListHeading>Subentries</ListHeading>
       <SubentriesList />
-      <DeleteButton
-        handleDelete={handleDeleteSubcategory}
-        itemType={subcategory.type}
-        itemName={subcategory.name}
-      >
-        {`Delete '${subcategory.name}'`}
-      </DeleteButton>
+      <ButtonOnBottomContainer>
+        <DeleteButton
+          handleDelete={handleDeleteSubcategory}
+          itemType={subcategory.type}
+          itemName={subcategory.name}
+        >
+          {`Delete '${subcategory.name}'`}
+        </DeleteButton>
+      </ButtonOnBottomContainer>
     </>
   );
 }
