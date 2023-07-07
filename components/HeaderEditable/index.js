@@ -1,13 +1,8 @@
 import styled from "styled-components";
 import Button from "../Button";
 
-// import BackIcon from "../../assets/icons/chevron_left.svg";
-// import EditIcon from "../../assets/icons/edit.svg";
-// import CheckIcon from "../../assets/icons/check.svg";
-
 import { ArrowLeftIcon, EditIcon, CheckIcon } from "../../assets/icons";
 
-import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 
