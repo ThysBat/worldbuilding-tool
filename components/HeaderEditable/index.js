@@ -33,7 +33,7 @@ export default function HeaderEditable({ children, onSave }) {
   return (
     <Header>
       <StyledInputButton type="button" onClick={handleOnBack}>
-        <ArrowLeftIcon fill="var(--on-surface)" />
+        <ArrowLeftIcon fill="var(--primary)" />
       </StyledInputButton>
       <Title
         ref={ref}
@@ -44,11 +44,11 @@ export default function HeaderEditable({ children, onSave }) {
       />
       {onEdit ? (
         <StyledInputButton type="button" onClick={handleOnSave}>
-          <CheckIcon fill="var(--on-surface)" />
+          <CheckIcon fill="var(--primary)" />
         </StyledInputButton>
       ) : (
         <StyledInputButton type="button" onClick={() => setOnEdit(true)}>
-          <EditIcon fill="var(--on-surface)" height="32" />
+          <EditIcon fill="var(--primary)" height="32" />
         </StyledInputButton>
       )}
     </Header>

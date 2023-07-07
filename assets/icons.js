@@ -58,7 +58,7 @@ export const EditIcon = ({ fill = "black", height = "48", width = "48" }) => (
     <path d="M794-666 666-794l42-42q17-17 42.5-16.5T793-835l43 43q17 17 17 42t-17 42l-42 42Zm-42 42L248-120H120v-128l504-504 128 128Z" />
   </svg>
 );
-export const ArrowTopIcon = ({
+export const ArrowUpIcon = ({
   fill = "black",
   height = "48",
   width = "48",
@@ -73,7 +73,7 @@ export const ArrowTopIcon = ({
     <path d="m283-345-43-43 240-240 240 239-43 43-197-197-197 198Z" />
   </svg>
 );
-export const ArrowBottomIcon = ({
+export const ArrowDownIcon = ({
   fill = "black",
   height = "48",
   width = "48",
