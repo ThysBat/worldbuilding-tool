@@ -101,5 +101,6 @@ const StyledCard = styled(Card)`
   border-radius: inherit;
 
   background-color: var(--surface-container-highest);
-  color: var(--on-surface-container);
+  color: var(--on-surface);
+  font-size: 1rem;
 `;

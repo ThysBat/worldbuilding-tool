@@ -53,9 +53,10 @@ export const StyledList = styled.ul`
 
   flex-direction: ${({ listStyles }) =>
     listStyles === "column" ? "column" : "row"};
+
   flex-wrap: wrap;
 
-  padding: 0.5rem;
+  padding: var(--padding-s);
 
   text-align: center;
   list-style: none;
