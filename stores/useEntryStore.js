@@ -66,18 +66,3 @@ export const useEntryStore = create(
     }
   )
 );
-
-// export const useEntryStore = create(
-//   persist(
-//     (set, get) => ({
-//       entries: entriesList,
-//       createNewEntry,
-//       addEntry: (newEntry) => set({ entries: [...get().entries, newEntry] }),
-//       getEntriesByCategoryId: (categoryId) =>
-//         handleGetEntriesByCategoryId(categoryId, get().entries),
-//     }),
-//     {
-//       name: "entries",
-//     }
-//   )
-// );

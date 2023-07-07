@@ -6,7 +6,7 @@ const ListHeading = styled.h3`
 
   font-weight: 400;
 
-  color: gray;
+  color: var(--on-surface);
 `;
 
 export default ListHeading;

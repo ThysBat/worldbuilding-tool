@@ -79,13 +79,21 @@ export const useCategoryStore = create(
   persist(
     immer((set, get) => ({
       categories: categoriesList,
+      getCategoriesByProjectId: (projectId) =>
+        handleGetCategoriesByProjectId(projectId, get().categories),
       createNewCategory,
       addCategory: (newCategory) =>
         set((state) => {
           state.categories.push(newCategory);
         }),
-      getCategoriesByProjectId: (projectId) =>
-        handleGetCategoriesByProjectId(projectId, get().categories),
+      updateCategory: (id, key, value) => {
+        set((state) => {
+          const index = state.categories.findIndex(
+            (category) => category.id == id
+          );
+          state.categories[index][key] = value;
+        });
+      },
       deleteCategory: (id) => {
         set((state) => {
           const index = state.categories.findIndex(

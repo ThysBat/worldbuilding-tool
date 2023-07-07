@@ -41,9 +41,10 @@ const Button = styled.button`
   ${({ variant }) =>
     variant === "default" &&
     css`
-      background-color: var(--color-danger);
-      padding: 0.25rem;
-      margin-top: 0.8rem;
+      background-color: var(--error-container);
+      color: var(--on-error-container);
+      padding: 0.35rem;
+      margin-top: var(--margin-m);
       margin-left: var(--margin-s);
     `}
 
@@ -51,6 +52,15 @@ const Button = styled.button`
     variant === "transparent" &&
     css`
       background-color: transparent;
-      opacity: 40%;
+      color: var(--on-surface);
+      opacity: 60%;
     `}
+`;
+
+export const ButtonOnBottomContainer = styled.div`
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+
+  padding-bottom: var(--padding-s);
 `;

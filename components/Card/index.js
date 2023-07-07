@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Card = styled.div`
   display: flex;
@@ -8,7 +8,8 @@ const Card = styled.div`
   width: var(--card-size-m);
   height: var(--card-size-m);
 
-  background-color: lightblue;
+  background-color: var(--primary-container);
+  color: var(--on-primary-container);
 
   border-radius: 1.6rem;
   padding: 2px;
