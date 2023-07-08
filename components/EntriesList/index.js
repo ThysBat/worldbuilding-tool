@@ -1,33 +1,26 @@
 import useStore from "../../hook/useStore";
 import { useEntryStore } from "../../stores/useEntryStore";
-import { useCategoryStore } from "../../stores/useCategoryStore";
-import { useRouter } from "next/router";
 
 import List from "../List";
 import AddInputButton from "../AddInputButton";
 
-export default function EntriesList() {
-  const router = useRouter();
+export default function EntriesList({ parent }) {
   const entryStore = useStore(useEntryStore, (state) => state);
-  const categoryStore = useStore(useCategoryStore, (state) => state);
 
-  if (!router || !entryStore || !categoryStore) return <div>Loading...</div>;
+  if (!entryStore) return <div>Loading...</div>;
 
-  const { createNewEntry, addEntry, getEntriesByCategoryId } = entryStore;
-  const { categories } = categoryStore;
-  const { categorySlug: slug } = router.query;
+  const { createNewEntry, addEntry, getEntriesByReferenceId } = entryStore;
 
-  const category = categories.find((category) => category.slug === slug);
-  const filteredEntries = getEntriesByCategoryId(category.id);
+  const entries = getEntriesByReferenceId(parent.id, parent.type);
 
-  const sortedEntries = filteredEntries.slice().sort((a, b) => {
+  const sortedEntries = entries.slice().sort((a, b) => {
     if (a.name > b.name) return 1;
     if (a.name < b.name) return -1;
   });
 
   function handleSave(entryName) {
     if (entryName.length < 1) return;
-    const newEntry = createNewEntry(entryName, category.id);
+    const newEntry = createNewEntry(entryName, parent.id, parent.type);
     addEntry(newEntry);
   }
 

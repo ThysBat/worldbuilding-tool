@@ -13,6 +13,10 @@ const categoriesList = [
     pathPrefix: "/category/",
     type: "category",
     projectId: 2,
+    reference: {
+      id: 2,
+      type: "project",
+    },
   },
   {
     id: 2,
@@ -21,6 +25,10 @@ const categoriesList = [
     pathPrefix: "/category/",
     type: "category",
     projectId: 2,
+    reference: {
+      id: 2,
+      type: "project",
+    },
   },
   {
     id: 3,
@@ -29,6 +37,10 @@ const categoriesList = [
     pathPrefix: "/category/",
     type: "category",
     projectId: 1,
+    reference: {
+      id: 1,
+      type: "project",
+    },
   },
   {
     id: 4,
@@ -37,6 +49,10 @@ const categoriesList = [
     pathPrefix: "/category/",
     type: "category",
     projectId: 1,
+    reference: {
+      id: 1,
+      type: "project",
+    },
   },
   {
     id: 5,
@@ -45,6 +61,10 @@ const categoriesList = [
     pathPrefix: "/category/",
     type: "category",
     projectId: 2,
+    reference: {
+      id: 2,
+      type: "project",
+    },
   },
   {
     id: 6,
@@ -53,10 +73,74 @@ const categoriesList = [
     pathPrefix: "/category/",
     type: "category",
     projectId: 1,
+    reference: {
+      id: 1,
+      type: "project",
+    },
+  },
+  {
+    id: 7,
+    name: "Flora",
+    slug: "flora",
+    pathPrefix: "/category/",
+    type: "category",
+    categoryId: 4,
+    reference: {
+      id: 4,
+      type: "category",
+    },
+  },
+  {
+    id: 8,
+    name: "Fauna",
+    slug: "fauna",
+    pathPrefix: "/category/",
+    type: "category",
+    categoryId: 4,
+    reference: {
+      id: 4,
+      type: "category",
+    },
+  },
+  {
+    id: 9,
+    name: "Forms of Magic",
+    slug: "forms-of-magic",
+    pathPrefix: "/category/",
+    type: "category",
+    categoryId: 3,
+    reference: {
+      id: 3,
+      type: "category",
+    },
+  },
+  {
+    id: 10,
+    name: "Limitations",
+    slug: "limitations",
+    pathPrefix: "/category/",
+    type: "category",
+    categoryId: 3,
+    reference: {
+      id: 3,
+      type: "category",
+    },
+  },
+  {
+    id: 11,
+    name: "Science and Technology",
+    slug: "science-and-technology",
+    pathPrefix: "/category/",
+    type: "category",
+    categoryId: 3,
+    reference: {
+      id: 3,
+      type: "category",
+    },
   },
 ];
 
-function createNewCategory(categoryName, projectId) {
+function createNewCategory(categoryName, referenceId, referenceType) {
   const slug = slugify(categoryName, { lower: true });
 
   return {
@@ -65,22 +149,31 @@ function createNewCategory(categoryName, projectId) {
     slug: slug,
     pathPrefix: "/category/",
     type: "category",
-    projectId: projectId,
+    reference: {
+      id: referenceId,
+      type: referenceType,
+    },
   };
 }
 
-function handleGetCategoriesByProjectId(projectId, categories) {
+function handleGetCategoriesByReferenceId(categories, id, type) {
   return categories
     .slice()
-    .filter((category) => category.projectId == projectId);
+    .filter(({ reference }) => reference.id == id && reference.type === type);
 }
 
 export const useCategoryStore = create(
   persist(
     immer((set, get) => ({
       categories: categoriesList,
-      getCategoriesByProjectId: (projectId) =>
-        handleGetCategoriesByProjectId(projectId, get().categories),
+      getCategoryById: (id) =>
+        get().categories.find((category) => category.id == id),
+      getCategoriesByReferenceId: (referenceId, referenceType) =>
+        handleGetCategoriesByReferenceId(
+          get().categories,
+          referenceId,
+          referenceType
+        ),
       createNewCategory,
       addCategory: (newCategory) =>
         set((state) => {

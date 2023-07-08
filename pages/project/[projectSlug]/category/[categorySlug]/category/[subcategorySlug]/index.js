@@ -1,16 +1,15 @@
 import { useRouter } from "next/router";
-import useStore from "../../../../../hook/useStore";
-import { useCategoryStore } from "../../../../../stores/useCategoryStore";
+import useStore from "../../../../../../../hook/useStore";
+import { useCategoryStore } from "../../../../../../../stores/useCategoryStore";
 
-import Header from "../../../../../components/HeaderEditable";
-import CategoriesList from "../../../../../components/CategoriesList";
-import EntriesList from "../../../../../components/EntriesList";
+import Header from "../../../../../../../components/HeaderEditable";
+import EntriesList from "../../../../../../../components/EntriesList";
 import DeleteButton, {
   ButtonOnBottomContainer,
-} from "../../../../../components/DeleteButton";
-import ListHeading from "../../../../../components/ListHeading";
+} from "../../../../../../../components/DeleteButton";
+import ListHeading from "../../../../../../../components/ListHeading";
 
-export default function CategoryPage() {
+export default function SubcategoryPage() {
   const router = useRouter();
   const { id } = router.query;
 
@@ -37,9 +36,7 @@ export default function CategoryPage() {
     <>
       <Header onSave={handleSaveCategoryName}>{category.name}</Header>
       <hr />
-      <ListHeading>Subcategories</ListHeading>
-      <CategoriesList parent={category} />
-      <ListHeading>Entries</ListHeading>
+      <ListHeading>Subentries</ListHeading>
       <EntriesList parent={category} />
       <ButtonOnBottomContainer>
         <DeleteButton

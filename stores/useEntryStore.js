@@ -13,10 +13,38 @@ const entriesList = [
     pathPrefix: "/entry/",
     type: "entry",
     categoryId: 3,
+    reference: {
+      id: 3,
+      type: "category",
+    },
+  },
+  {
+    id: 2,
+    name: "Airships",
+    slug: "airships",
+    pathPrefix: "/entry/",
+    type: "entry",
+    subcategoryId: 5,
+    reference: {
+      id: 11,
+      type: "category",
+    },
+  },
+  {
+    id: 3,
+    name: "Dark Magic",
+    slug: "dark-magic",
+    pathPrefix: "/entry/",
+    type: "entry",
+    subcategoryId: 3,
+    reference: {
+      id: 9,
+      type: "category",
+    },
   },
 ];
 
-function createNewEntry(entryName, categoryId) {
+function createNewEntry(entryName, referenceId, referenceType) {
   const slug = slugify(entryName, { lower: true });
 
   return {
@@ -25,14 +53,17 @@ function createNewEntry(entryName, categoryId) {
     slug: slug,
     pathPrefix: "/entry/",
     type: "entry",
-    categoryId,
+    reference: {
+      id: referenceId,
+      type: referenceType,
+    },
   };
 }
 
-function handleGetEntriesByCategoryId(categoryId, entries) {
+function handleGetEntriesByReferenceId(entries, id, type) {
   return entries
     .slice()
-    .filter((category) => category.categoryId === categoryId);
+    .filter(({ reference }) => reference.id == id && reference.type === type);
 }
 
 export const useEntryStore = create(
@@ -45,8 +76,12 @@ export const useEntryStore = create(
           state.entries.push(newEntry);
         }),
       getEntryById: (id) => get().entries.find((entry) => entry.id == id),
-      getEntriesByCategoryId: (categoryId) =>
-        handleGetEntriesByCategoryId(categoryId, get().entries),
+      getEntriesByReferenceId: (referenceId, referenceType) =>
+        handleGetEntriesByReferenceId(
+          get().entries,
+          referenceId,
+          referenceType
+        ),
       updateEntry: (id, name) => {
         set((state) => {
           const index = state.entries.findIndex((entry) => entry.id == id);

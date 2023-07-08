@@ -37,7 +37,7 @@ export default function ProjectPage() {
       <Header onSave={handleOnSave}>{project.name}</Header>
       <hr />
       <ListHeading>Categories</ListHeading>
-      <CategoriesList></CategoriesList>
+      <CategoriesList parent={project} />
       <ButtonOnBottomContainer>
         <DeleteButton
           handleDelete={handleDeleteProject}
