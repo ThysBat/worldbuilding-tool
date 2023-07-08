@@ -18,6 +18,30 @@ const entriesList = [
       type: "category",
     },
   },
+  {
+    id: 2,
+    name: "Airships",
+    slug: "airships",
+    pathPrefix: "/entry/",
+    type: "entry",
+    subcategoryId: 5,
+    reference: {
+      id: 11,
+      type: "category",
+    },
+  },
+  {
+    id: 3,
+    name: "Dark Magic",
+    slug: "dark-magic",
+    pathPrefix: "/entry/",
+    type: "entry",
+    subcategoryId: 3,
+    reference: {
+      id: 9,
+      type: "category",
+    },
+  },
 ];
 
 function createNewEntry(entryName, referenceId, referenceType) {
@@ -36,11 +60,6 @@ function createNewEntry(entryName, referenceId, referenceType) {
   };
 }
 
-function handleGetEntriesByCategoryId(categoryId, entries) {
-  return entries
-    .slice()
-    .filter((category) => category.categoryId === categoryId);
-}
 function handleGetEntriesByReferenceId(entries, id, type) {
   return entries
     .slice()
@@ -57,8 +76,6 @@ export const useEntryStore = create(
           state.entries.push(newEntry);
         }),
       getEntryById: (id) => get().entries.find((entry) => entry.id == id),
-      getEntriesByCategoryId: (categoryId) =>
-        handleGetEntriesByCategoryId(categoryId, get().entries),
       getEntriesByReferenceId: (referenceId, referenceType) =>
         handleGetEntriesByReferenceId(
           get().entries,

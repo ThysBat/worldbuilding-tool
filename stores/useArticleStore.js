@@ -12,21 +12,53 @@ const articlesList = [
       "Magic and Technology are closely intertwined to be able to sail along the winds.",
     type: "article",
     entryId: 1,
+    reference: {
+      id: 1,
+      type: "entry",
+    },
+  },
+  {
+    id: 2,
+    title: "Introduction",
+    content:
+      "Dark Magic is one of two sources of magic in this world. Dark magic can use every energy that consists of a dark or negative aura.",
+    type: "article",
+    reference: {
+      id: 3,
+      type: "entry",
+    },
+  },
+  {
+    id: 3,
+    title: "Usecases",
+    content:
+      "Dark magic is used everywhere where there is suffering that wants to be turned into something good. But beware, do not try and change the energy you want to use for your magic!",
+    type: "article",
+    reference: {
+      id: 3,
+      type: "entry",
+    },
   },
 ];
 
-function createNewArticle(entryId) {
+function createNewArticle(referenceId, referenceType) {
   return {
     id: uid(),
     title: "",
     content: "",
     type: "article",
-    entryId,
+    referenceId,
+    reference: {
+      id: referenceId,
+      type: referenceType,
+    },
   };
 }
 
-function handleGetArticlesByEntryId(entryId, articles) {
-  return articles.slice().filter((entry) => entry.entryId === entryId);
+function handleGetArticlesByReferenceId(articles, id, type) {
+  return articles
+    .slice()
+    .filter(({ reference }) => reference.id == id && reference.type === type);
 }
 
 export const useArticleStore = create(
@@ -40,8 +72,12 @@ export const useArticleStore = create(
         }),
       getArticleById: (id) =>
         get().articles.find((article) => article.id == id),
-      getArticlesByEntryId: (entryId) =>
-        handleGetArticlesByEntryId(entryId, get().articles),
+      getArticlesByReferenceId: (referenceId, referenceType) =>
+        handleGetArticlesByReferenceId(
+          get().articles,
+          referenceId,
+          referenceType
+        ),
       updateArticle: (id, key, value) => {
         set((state) => {
           const index = state.articles.findIndex((article) => article.id == id);

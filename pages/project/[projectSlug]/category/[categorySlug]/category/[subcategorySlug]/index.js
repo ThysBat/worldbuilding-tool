@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import useStore from "../../../../../../../hook/useStore";
-import { useSubcategoryStore } from "../../../../../../../stores/useSubcategoryStore";
+import { useCategoryStore } from "../../../../../../../stores/useCategoryStore";
 
 import Header from "../../../../../../../components/HeaderEditable";
-import SubentriesList from "../../../../../../../components/SubentriesList";
+import EntriesList from "../../../../../../../components/EntriesList";
 import DeleteButton, {
   ButtonOnBottomContainer,
 } from "../../../../../../../components/DeleteButton";
@@ -11,43 +11,40 @@ import ListHeading from "../../../../../../../components/ListHeading";
 
 export default function SubcategoryPage() {
   const router = useRouter();
-  const { subcategorySlug: slug, id } = router.query;
+  const { id } = router.query;
 
-  const subcategoryStore = useStore(useSubcategoryStore, (state) => state);
+  const categoryStore = useStore(useCategoryStore, (state) => state);
 
-  if (!slug || !subcategoryStore) return <div>Loading...</div>;
+  if (!id || !categoryStore) return <div>Loading...</div>;
 
-  const { subcategories, deleteSubcategory, updateSubcategory } =
-    subcategoryStore;
+  const { getCategoryById, deleteCategory, updateCategory } = categoryStore;
 
-  const subcategory = subcategories.find(
-    (subcategory) => subcategory.slug === slug
-  );
+  const category = getCategoryById(id);
 
-  if (!subcategory) return <div>No Data Found</div>;
+  if (!category) return <div>No Data Found</div>;
 
-  function handleSaveSubcategoryName(newName) {
-    updateSubcategory(subcategory.id, "name", newName);
+  function handleSaveCategoryName(newName) {
+    updateCategory(category.id, "name", newName);
   }
 
-  function handleDeleteSubcategory() {
-    deleteSubcategory(id);
+  function handleDeleteCategory() {
+    deleteCategory(id);
     router.back();
   }
 
   return (
     <>
-      <Header onSave={handleSaveSubcategoryName}>{subcategory.name}</Header>
+      <Header onSave={handleSaveCategoryName}>{category.name}</Header>
       <hr />
       <ListHeading>Subentries</ListHeading>
-      <SubentriesList />
+      <EntriesList parent={category} />
       <ButtonOnBottomContainer>
         <DeleteButton
-          handleDelete={handleDeleteSubcategory}
-          itemType={subcategory.type}
-          itemName={subcategory.name}
+          handleDelete={handleDeleteCategory}
+          itemType={category.type}
+          itemName={category.name}
         >
-          {`Delete '${subcategory.name}'`}
+          {`Delete '${category.name}'`}
         </DeleteButton>
       </ButtonOnBottomContainer>
     </>

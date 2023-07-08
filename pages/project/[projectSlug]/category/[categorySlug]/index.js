@@ -12,15 +12,15 @@ import ListHeading from "../../../../../components/ListHeading";
 
 export default function CategoryPage() {
   const router = useRouter();
-  const { categorySlug: slug, id } = router.query;
+  const { id } = router.query;
 
   const categoryStore = useStore(useCategoryStore, (state) => state);
 
-  if (!slug || !categoryStore) return <div>Loading...</div>;
+  if (!id || !categoryStore) return <div>Loading...</div>;
 
-  const { categories, deleteCategory, updateCategory } = categoryStore;
+  const { getCategoryById, deleteCategory, updateCategory } = categoryStore;
 
-  const category = categories.find((category) => category.slug === slug);
+  const category = getCategoryById(id);
 
   if (!category) return <div>No Data Found</div>;
 

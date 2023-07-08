@@ -166,6 +166,8 @@ export const useCategoryStore = create(
   persist(
     immer((set, get) => ({
       categories: categoriesList,
+      getCategoryById: (id) =>
+        get().categories.find((category) => category.id == id),
       getCategoriesByReferenceId: (referenceId, referenceType) =>
         handleGetCategoriesByReferenceId(
           get().categories,
