@@ -3,7 +3,7 @@ import useStore from "../../../../../hook/useStore";
 import { useCategoryStore } from "../../../../../stores/useCategoryStore";
 
 import Header from "../../../../../components/HeaderEditable";
-import SubcategoriesList from "../../../../../components/SubcategoriesList";
+import CategoriesList from "../../../../../components/CategoriesList";
 import EntriesList from "../../../../../components/EntriesList";
 import DeleteButton, {
   ButtonOnBottomContainer,
@@ -38,7 +38,7 @@ export default function CategoryPage() {
       <Header onSave={handleSaveCategoryName}>{category.name}</Header>
       <hr />
       <ListHeading>Subcategories</ListHeading>
-      <SubcategoriesList />
+      <CategoriesList parent={category} />
       <ListHeading>Entries</ListHeading>
       <EntriesList />
       <ButtonOnBottomContainer>

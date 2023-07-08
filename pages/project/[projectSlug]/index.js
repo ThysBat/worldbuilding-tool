@@ -32,12 +32,6 @@ export default function ProjectPage() {
     router.back();
   }
 
-  /*
-  What I need:
-    -the current project by slug    -> project store
-    -all categories in this project -> category store
-  */
-
   return (
     <>
       <Header onSave={handleOnSave}>{project.name}</Header>

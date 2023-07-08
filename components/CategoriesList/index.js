@@ -11,9 +11,10 @@ export default function CategoriesList({ parent }) {
 
   if (!router || !categoryStore) return <div>Loading...</div>;
 
-  const { createNewCategory, addCategory, getCategoriesByProjectId } =
+  const { createNewCategory, addCategory, getCategoriesByReferenceId } =
     categoryStore;
-  const categories = getCategoriesByProjectId(parent.id);
+
+  const categories = getCategoriesByReferenceId(parent.id, parent.type);
 
   const sortedCategories = categories.slice().sort((a, b) => {
     if (a.name > b.name) return 1;
@@ -22,7 +23,7 @@ export default function CategoriesList({ parent }) {
 
   function handleSave(categoryName) {
     if (categoryName.length < 1) return;
-    const newCategory = createNewCategory(categoryName, project.id);
+    const newCategory = createNewCategory(categoryName, parent.id, parent.type);
     addCategory(newCategory);
   }
 
