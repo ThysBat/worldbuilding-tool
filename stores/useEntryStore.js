@@ -20,12 +20,7 @@ const entriesList = [
   },
 ];
 
-function createNewEntry(
-  entryName,
-  categoryId,
-  referenceId = "",
-  referenceType = ""
-) {
+function createNewEntry(entryName, referenceId, referenceType) {
   const slug = slugify(entryName, { lower: true });
 
   return {
@@ -34,7 +29,6 @@ function createNewEntry(
     slug: slug,
     pathPrefix: "/entry/",
     type: "entry",
-    categoryId,
     reference: {
       id: referenceId,
       type: referenceType,

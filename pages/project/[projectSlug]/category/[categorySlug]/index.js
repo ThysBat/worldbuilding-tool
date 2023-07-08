@@ -40,7 +40,7 @@ export default function CategoryPage() {
       <ListHeading>Subcategories</ListHeading>
       <CategoriesList parent={category} />
       <ListHeading>Entries</ListHeading>
-      <EntriesList category={category} />
+      <EntriesList parent={category} />
       <ButtonOnBottomContainer>
         <DeleteButton
           handleDelete={handleDeleteCategory}
