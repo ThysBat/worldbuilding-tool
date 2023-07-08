@@ -1,15 +1,13 @@
 import useStore from "../../hook/useStore";
 import { useCategoryStore } from "../../stores/useCategoryStore";
-import { useRouter } from "next/router";
 
 import List from "../List";
 import AddInputButton from "../AddInputButton";
 
 export default function CategoriesList({ parent }) {
-  const router = useRouter();
   const categoryStore = useStore(useCategoryStore, (state) => state);
 
-  if (!router || !categoryStore) return <div>Loading...</div>;
+  if (!categoryStore) return <div>Loading...</div>;
 
   const { createNewCategory, addCategory, getCategoriesByReferenceId } =
     categoryStore;
