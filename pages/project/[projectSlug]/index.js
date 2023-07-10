@@ -17,9 +17,9 @@ export default function ProjectPage() {
 
   if (!id || !projectStore) return <div>Loading...</div>;
 
-  const { projects, deleteProject, updateProject } = projectStore;
+  const { deleteProject, updateProject, getProjectById } = projectStore;
 
-  const project = projects.find((project) => project.slug === slug);
+  const project = getProjectById(id);
 
   if (!project) return <div>No Data Found</div>;
 
