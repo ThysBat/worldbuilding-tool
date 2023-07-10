@@ -11,11 +11,11 @@ import ListHeading from "../../../components/ListHeading";
 
 export default function ProjectPage() {
   const router = useRouter();
-  const { projectSlug: slug, id } = router.query;
+  const { id } = router.query;
 
   const projectStore = useStore(useProjectStore, (state) => state);
 
-  if (!slug || !projectStore) return <div>Loading...</div>;
+  if (!id || !projectStore) return <div>Loading...</div>;
 
   const { projects, deleteProject, updateProject } = projectStore;
 
