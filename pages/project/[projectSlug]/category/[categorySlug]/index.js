@@ -18,9 +18,9 @@ export default function CategoryPage() {
 
   if (!id || !categoryStore) return <div>Loading...</div>;
 
-  const { getCategoryById, deleteCategory, updateCategory } = categoryStore;
+  const { getCategoriesById, deleteCategory, updateCategory } = categoryStore;
 
-  const category = getCategoryById(id);
+  const category = getCategoriesById(id);
 
   if (!category) return <div>No Data Found</div>;
 

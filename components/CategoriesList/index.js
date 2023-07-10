@@ -7,7 +7,7 @@ import AddInputButton from "../AddInputButton";
 export default function CategoriesList({ parent }) {
   const categoryStore = useStore(useCategoryStore, (state) => state);
 
-  if (!categoryStore) return <div>Loading...</div>;
+  if (!categoryStore || !parent) return <div>Loading...</div>;
 
   const { createNewCategory, addCategory, getCategoriesByReferenceId } =
     categoryStore;
