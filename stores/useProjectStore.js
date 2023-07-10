@@ -53,6 +53,8 @@ export const useProjectStore = create(
     immer((set, get) => ({
       projects: projectsList,
       createNewProject,
+      getProjectById: (id) =>
+        get().projects.find((project) => project.id == id),
       addProject: (newProject) =>
         set((state) => {
           state.projects.push(newProject);
