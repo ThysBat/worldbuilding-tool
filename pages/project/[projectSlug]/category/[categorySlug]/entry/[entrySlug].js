@@ -15,12 +15,12 @@ import DeleteButton, {
 
 export default function EntryPage() {
   const router = useRouter();
-  const { entrySlug: slug, id } = router.query;
+  const { id } = router.query;
 
   const articleStore = useStore(useArticleStore, (state) => state);
   const entryStore = useStore(useEntryStore, (state) => state);
 
-  if (!entryStore || !articleStore || !slug) return <div>Loading...</div>;
+  if (!entryStore || !articleStore || !id) return <div>Loading...</div>;
 
   const {
     createNewArticle,
@@ -37,7 +37,7 @@ export default function EntryPage() {
   const articles = getArticlesByReferenceId(entry.id, entry.type);
 
   function handleAddArticle() {
-    const newArticle = createNewArticle(entry.id);
+    const newArticle = createNewArticle(entry.id, entry.type);
     addArticle(newArticle);
   }
 
