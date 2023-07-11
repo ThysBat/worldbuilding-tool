@@ -103,8 +103,6 @@ const Article = styled(Card)`
   flex-direction: column;
   align-items: flex-end;
 
-  text-decoration: none;
-
   gap: var(--gap-xs);
   padding: var(--padding-s) var(--padding-s) var(--padding-xs);
 
