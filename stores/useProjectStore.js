@@ -14,20 +14,6 @@ const projectsList = [
     type: "project",
   },
   {
-    id: 2,
-    name: "Aventurien",
-    slug: "aventurien",
-    pathPrefix: "project/",
-    type: "project",
-  },
-  {
-    id: 3,
-    name: "Space World",
-    slug: "space-world",
-    pathPrefix: "project/",
-    type: "project",
-  },
-  {
     id: 4,
     name: "Middle Earth",
     slug: "middle-earth",
