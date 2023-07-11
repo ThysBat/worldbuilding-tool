@@ -91,6 +91,17 @@ const AddArticleButton = styled(Button)`
   border-radius: var(--border-radius-s);
 
   margin: ${paddingGroup};
+
+  transition: box-shadow 0.2s ease-in;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 5px 12px,
+      rgba(0, 0, 0, 0.23) 0px 3px 3px;
+  }
+
+  &:active {
+    scale: 0.97;
+  }
 `;
 
 const StyledCard = styled(Card)`
