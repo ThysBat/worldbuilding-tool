@@ -59,6 +59,7 @@ export default function ArticleCard({
           value={title}
           onChange={handleTitleChange}
           onBlur={handleTitleBlur}
+          spellCheck={false}
         />
         <ToggleButton onClick={toggleArticle}>
           {expand ? (
@@ -75,6 +76,7 @@ export default function ArticleCard({
         value={content}
         onChange={handleContentChange}
         onBlur={handleContentBlur}
+        spellCheck={false}
       ></StyledInput>
       <DeleteButton
         variant="transparent"
