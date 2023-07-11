@@ -22,7 +22,9 @@ export default function ProjectsList() {
     if (projectName.length < 1) return;
     const newProject = createNewProject(projectName);
     addProject(newProject);
-    router.push(`/${newProject.pathPrefix + newProject.slug}`);
+    router.push(
+      `/${newProject.pathPrefix + newProject.slug}?id=${newProject.id}`
+    );
   }
 
   return (

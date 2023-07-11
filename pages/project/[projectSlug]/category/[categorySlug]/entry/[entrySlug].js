@@ -15,12 +15,12 @@ import DeleteButton, {
 
 export default function EntryPage() {
   const router = useRouter();
-  const { entrySlug: slug, id } = router.query;
+  const { id } = router.query;
 
   const articleStore = useStore(useArticleStore, (state) => state);
   const entryStore = useStore(useEntryStore, (state) => state);
 
-  if (!entryStore || !articleStore || !slug) return <div>Loading...</div>;
+  if (!entryStore || !articleStore || !id) return <div>Loading...</div>;
 
   const {
     createNewArticle,
@@ -37,7 +37,7 @@ export default function EntryPage() {
   const articles = getArticlesByReferenceId(entry.id, entry.type);
 
   function handleAddArticle() {
-    const newArticle = createNewArticle(entry.id);
+    const newArticle = createNewArticle(entry.id, entry.type);
     addArticle(newArticle);
   }
 
@@ -91,6 +91,17 @@ const AddArticleButton = styled(Button)`
   border-radius: var(--border-radius-s);
 
   margin: ${paddingGroup};
+
+  transition: box-shadow 0.2s ease-in;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 5px 12px,
+      rgba(0, 0, 0, 0.23) 0px 3px 3px;
+  }
+
+  &:active {
+    scale: 0.97;
+  }
 `;
 
 const StyledCard = styled(Card)`

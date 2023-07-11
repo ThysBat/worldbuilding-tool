@@ -7,30 +7,6 @@ import { uid } from "uid";
 
 const categoriesList = [
   {
-    id: 1,
-    name: "Geography and Nature",
-    slug: "geography-and-nature",
-    pathPrefix: "/category/",
-    type: "category",
-    projectId: 2,
-    reference: {
-      id: 2,
-      type: "project",
-    },
-  },
-  {
-    id: 2,
-    name: "Culture",
-    slug: "culture",
-    pathPrefix: "/category/",
-    type: "category",
-    projectId: 2,
-    reference: {
-      id: 2,
-      type: "project",
-    },
-  },
-  {
     id: 3,
     name: "Magic and Technology",
     slug: "magic-and-technology",
@@ -43,81 +19,9 @@ const categoriesList = [
     },
   },
   {
-    id: 4,
-    name: "Geography and Nature",
-    slug: "geography-and-nature",
-    pathPrefix: "/category/",
-    type: "category",
-    projectId: 1,
-    reference: {
-      id: 1,
-      type: "project",
-    },
-  },
-  {
-    id: 5,
-    name: "Population and Politics",
-    slug: "population-and-politics",
-    pathPrefix: "/category/",
-    type: "category",
-    projectId: 2,
-    reference: {
-      id: 2,
-      type: "project",
-    },
-  },
-  {
-    id: 6,
-    name: "Culture",
-    slug: "culture",
-    pathPrefix: "/category/",
-    type: "category",
-    projectId: 1,
-    reference: {
-      id: 1,
-      type: "project",
-    },
-  },
-  {
-    id: 7,
-    name: "Flora",
-    slug: "flora",
-    pathPrefix: "/category/",
-    type: "category",
-    categoryId: 4,
-    reference: {
-      id: 4,
-      type: "category",
-    },
-  },
-  {
-    id: 8,
-    name: "Fauna",
-    slug: "fauna",
-    pathPrefix: "/category/",
-    type: "category",
-    categoryId: 4,
-    reference: {
-      id: 4,
-      type: "category",
-    },
-  },
-  {
     id: 9,
     name: "Forms of Magic",
     slug: "forms-of-magic",
-    pathPrefix: "/category/",
-    type: "category",
-    categoryId: 3,
-    reference: {
-      id: 3,
-      type: "category",
-    },
-  },
-  {
-    id: 10,
-    name: "Limitations",
-    slug: "limitations",
     pathPrefix: "/category/",
     type: "category",
     categoryId: 3,
@@ -136,6 +40,28 @@ const categoriesList = [
     reference: {
       id: 3,
       type: "category",
+    },
+  },
+  {
+    id: 12,
+    name: "Characters",
+    slug: "characters",
+    pathPrefix: "/category/",
+    type: "category",
+    reference: {
+      id: 4,
+      type: "project",
+    },
+  },
+  {
+    id: 13,
+    name: "Races",
+    slug: "races",
+    pathPrefix: "/category/",
+    type: "category",
+    reference: {
+      id: 4,
+      type: "project",
     },
   },
 ];

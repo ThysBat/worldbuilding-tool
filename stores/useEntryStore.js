@@ -42,6 +42,129 @@ const entriesList = [
       type: "category",
     },
   },
+
+  {
+    id: 7,
+    name: "Hobbits",
+    slug: "hobbits",
+    pathPrefix: "/entry/",
+    type: "entry",
+    reference: {
+      id: 13,
+      type: "category",
+    },
+  },
+  {
+    id: 8,
+    name: "Treemen",
+    slug: "treemen",
+    pathPrefix: "/entry/",
+    type: "entry",
+    reference: {
+      id: 13,
+      type: "category",
+    },
+  },
+  {
+    id: 9,
+    name: "Orcs",
+    slug: "orcs",
+    pathPrefix: "/entry/",
+    type: "entry",
+    reference: {
+      id: 13,
+      type: "category",
+    },
+  },
+
+  {
+    id: 10,
+    name: "Frodo",
+    slug: "frodo",
+    pathPrefix: "/entry/",
+    type: "entry",
+    reference: {
+      id: 12,
+      type: "category",
+    },
+  },
+  {
+    id: 12,
+    name: "Gimli",
+    slug: "gimli",
+    pathPrefix: "/entry/",
+    type: "entry",
+    reference: {
+      id: 12,
+      type: "category",
+    },
+  },
+  {
+    id: 14,
+    name: "Gandalf",
+    slug: "gandalf",
+    pathPrefix: "/entry/",
+    type: "entry",
+    reference: {
+      id: 12,
+      type: "category",
+    },
+  },
+  {
+    id: 16,
+    name: "Saruman",
+    slug: "saruman",
+    pathPrefix: "/entry/",
+    type: "entry",
+    reference: {
+      id: 12,
+      type: "category",
+    },
+  },
+  {
+    id: 17,
+    name: "Gollum",
+    slug: "gollum",
+    pathPrefix: "/entry/",
+    type: "entry",
+    reference: {
+      id: 12,
+      type: "category",
+    },
+  },
+  {
+    id: 19,
+    name: "Men",
+    slug: "men",
+    pathPrefix: "/entry/",
+    type: "entry",
+    reference: {
+      id: 13,
+      type: "category",
+    },
+  },
+  {
+    id: 22,
+    name: "Elves",
+    slug: "elves",
+    pathPrefix: "/entry/",
+    type: "entry",
+    reference: {
+      id: 13,
+      type: "category",
+    },
+  },
+  {
+    id: 25,
+    name: "Dwarves",
+    slug: "dwarves",
+    pathPrefix: "/entry/",
+    type: "entry",
+    reference: {
+      id: 13,
+      type: "category",
+    },
+  },
 ];
 
 function createNewEntry(entryName, referenceId, referenceType) {
