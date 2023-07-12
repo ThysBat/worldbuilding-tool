@@ -6,7 +6,7 @@ Whether you are a DM for a Pen and Paper Game, or simply want to write out some 
 
 With its easy navigation and intuitive handling your first entry is made in seconds. From there on, you only have to write what is in your mind.
 
-Do you already have a seeting in your mind? Sketch it out with the [Worldbuilding Tool](https://worldbuilding-tool.vercel.app/)
+Do you already have a setting in your mind? Sketch it out with the [Worldbuilding Tool](https://worldbuilding-tool.vercel.app/)
 
 This app is optimized for mobile usage, so please switch your browser to responsive mode (iPhone SE)
 
